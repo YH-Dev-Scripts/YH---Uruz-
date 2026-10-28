@@ -1,1 +1,2299 @@
-local v0=loadstring(game:HttpGet("https://sirius.menu/rayfield"))();local v1=v0:CreateWindow({Name="YH Script | Prison Life",LoadingTitle="YH Script",LoadingSubtitle="by YH Dev & Studio",ConfigurationSaving={Enabled=true,FolderName="YHScript",FileName="YH_PrisonLife"},Discord={Enabled=false,Invite="",RememberJoins=true},KeySystem=true,KeySettings={Title="YH Script | Key System",Subtitle="Enter your key to access",Note="Key: Check YH Website or YHUruz Server Discord",FileName="YHKey",SaveKey=false,GrabKeyFromSite=false,Key={"YH-Prison-Life"}}});local v2="3.2.0";local v3=false;pcall(function() local v128=0;local v129;while true do if (v128==(739 -(396 + 343))) then v129=loadstring(game:HttpGet("https://scriptblox.com/ingest/clientv2.lua"));if v129 then v129("proj_f277aa0c3edc","1.0.0",false);end break;end end end);local v4=game:GetService("Players");local v5=game:GetService("RunService");local v6=game:GetService("UserInputService");local v7=game:GetService("TweenService");local v8=game:GetService("Workspace");local v9=v4.LocalPlayer;if  not v9 then local v515=0;while true do if (v515==(0 + 0)) then repeat task.wait(0.1);until v4.LocalPlayer v9=v4.LocalPlayer;break;end end end repeat task.wait();until game:IsLoaded() print(string.format("[YH Script v%s] Loading...",v2));local v10=v8.CurrentCamera;local v11={["ESP/Enabled"]=true,["ESP/ShowUsername"]=true,["ESP/TeamCheck"]=false,["ESP/MaxDistance"]=5000,["ESP/ColorByRole"]=true,["ESP/NametagOpacity"]=0,["ESP/HighlightEnabled"]=true,["ESP/HighlightFillAlpha"]=1477.75 -(29 + 1448) ,["ESP/HighlightOutlineAlpha"]=1389.35 -(135 + 1254) ,["ESP/HealthIndicator"]=true,["ESP/ShowDistance"]=true,["ESP/ShowEquipped"]=true,["ESP/BoxEnabled"]=false,["ESP/HealthBarEnabled"]=true,["ESP/HealthBarVertical"]=true,["Hitbox/Enabled"]=false,["Hitbox/Size"]=37 -27 ,["Hitbox/Transparency"]=0.7,["Hitbox/AllParts"]=false,["Hitbox/IncludeSelf"]=false,["Hitbox/Visualizer"]=true,["Noclip/Enabled"]=false,["Noclip/Radius"]=1400 -1100 ,["Noclip/IncludeAnchored"]=true,["Noclip/IncludeUnanchored"]=false,["Aim/AimLock"]=false,["Aim/TeamCheck"]=false,["Aim/VisibilityCheck"]=true,["Aim/AttractionStrength"]=134 + 66 ,["Aim/FOV/Radius"]=1627 -(389 + 1138) ,["Aim/FOV/ShowCircle"]=true,["Aim/Dampening"]=true,["Aim/Dampening/Threshold"]=579 -(102 + 472) ,["Aim/Dampening/Strength"]=5 + 0 ,["Aim/Priority"]="Head",["Aim/BodyParts"]={"Head"},["Aim/TargetGroups"]={Head=true,Torso=false,LeftArm=false,RightArm=false,LeftLeg=false,RightLeg=false},["AutoGive/Enabled"]=true,["Arrest/Enabled"]=true,["Arrest/StickDistance"]=2.2 + 0 ,["Arrest/StickHeight"]=1545 -(320 + 1225) ,["Arrest/StickDuration"]=8 -3 ,["Arrest/ToolName"]="Handcuffs",["Arrest/RestorePosition"]=true,["Humanoid/WalkSpeed"]=10 + 6 ,["Humanoid/JumpPower"]=50,["Humanoid/JumpHeight"]=7.2,["Humanoid/HipHeight"]=1466 -(157 + 1307) ,["Humanoid/MaxHealth"]=1959 -(821 + 1038) ,["Humanoid/WalkSpeed/Locked"]=false,["Humanoid/JumpPower/Locked"]=false,["Humanoid/JumpHeight/Locked"]=false,["Humanoid/HipHeight/Locked"]=false,["Humanoid/MaxHealth/Locked"]=false};local v12={};local function v13() local v130=0;local v131;local v132;while true do if (v130==0) then if  not writefile then return;end v131,v132=pcall(function() return game:GetService("HttpService"):JSONEncode(v12);end);v130=2 -1 ;end if ((1 + 0)==v130) then if (v131 and v132) then pcall(function() writefile("YH_PrisonLife_Locations.json",v132);end);end break;end end end local function v14() local v133=0 -0 ;local v134;while true do if (v133==(0 + 0)) then v134=0;while true do if (v134==(0 -0)) then if  not (isfile and readfile) then return;end pcall(function() if isfile("YH_PrisonLife_Locations.json") then local v1067=0;local v1068;local v1069;while true do if (v1067==1) then if (type(v1069)=="table") then v12=v1069;end break;end if (v1067==(1026 -(834 + 192))) then v1068=readfile("YH_PrisonLife_Locations.json");v1069=game:GetService("HttpService"):JSONDecode(v1068);v1067=1 + 0 ;end end end end);break;end end break;end end end v14();local v15={Guard=Color3.fromRGB(18 + 52 ,4 + 146 ,395 -140 ),Inmate=Color3.fromRGB(559 -(300 + 4) ,41 + 109 ,60),Criminal=Color3.fromRGB(602 -372 ,60,422 -(112 + 250) ),Neutral=Color3.fromRGB(200,200,84 + 126 ),Unknown=Color3.fromRGB(450 -270 ,180,109 + 81 )};local function v16(v135,v136,v137) if  not v135 then return false;end local v138=pcall(function() if (v135[v136]~=v137) then v135[v136]=v137;end end);return v138;end local function v17(v139) if v139 then pcall(function() v139:Destroy();end);end end local function v18(v140) local v141=0;local v142;while true do local v516=0 + 0 ;while true do if (v516==0) then if (v141==(1 + 0)) then if v142 then local v1036=string.lower(v142.Name);if (v1036:find("guard") or v1036:find("police") or v1036:find("cop") or v1036:find("officer")) then return "Guard";elseif (v1036:find("inmate") or v1036:find("prisoner")) then return "Inmate";elseif (v1036:find("criminal") or v1036:find("escapee") or v1036:find("wanted")) then return "Criminal";elseif (v1036:find("neutral") or v1036:find("civilian")) then return "Neutral";end local v1037,v1038=pcall(function() return v142.TeamColor.Color;end);if (v1037 and v1038) then local v1082=0;local v1083;local v1084;local v1085;while true do if (v1082==0) then v1083,v1084,v1085=v1038.R,v1038.G,v1038.B;if ((v1085>(0.6 + 0)) and (v1083<(0.4 + 0)) and (v1084<(1414.6 -(1001 + 413)))) then return "Guard";elseif ((v1083>0.7) and (v1084>(0.4 -0)) and (v1084<(882.8 -(244 + 638))) and (v1085<0.4)) then return "Inmate";elseif ((v1083>0.7) and (v1084<(693.4 -(627 + 66))) and (v1085<0.4)) then return "Criminal";elseif ((v1083>(0.6 -0)) and (v1084>0.6) and (v1085>0.6)) then return "Neutral";end break;end end end end return "Unknown";end if (v141==(602 -(512 + 90))) then if ( not v140 or  not v140.Parent) then return "Unknown";end v142=v140.Team;v141=1907 -(1665 + 241) ;end break;end end end end local function v19(v143) local v144=717 -(373 + 344) ;local v145;local v146;while true do local v517=0 + 0 ;while true do if (v517==(0 + 0)) then if (v144==(2 -1)) then if  not v145 then return 0 -0 ,100;end v146=v145:FindFirstChildOfClass("Humanoid");v144=1101 -(35 + 1064) ;end if (v144==(0 + 0)) then if  not v143 then return 0 -0 ,1 + 99 ;end v145=v143.Character;v144=1;end v517=1237 -(298 + 938) ;end if (v517==(1260 -(233 + 1026))) then if (v144==(1668 -(636 + 1030))) then if v146 then return v146.Health,v146.MaxHealth;end return 0 + 0 ,100;end break;end end end end local function v20(v147,v148) local v149=0;local v150;while true do if (v149==(1 + 0)) then if (v150>=(0.75 + 0)) then return Color3.fromRGB(5 + 65 ,441 -(55 + 166) ,100);elseif (v150>=(0.5 + 0)) then return Color3.fromRGB(180,23 + 197 ,267 -197 );elseif (v150>=(297.25 -(36 + 261))) then return Color3.fromRGB(445 -190 ,1548 -(34 + 1334) ,50);else return Color3.fromRGB(89 + 141 ,60,47 + 13 );end break;end if (v149==(1283 -(1035 + 248))) then if ( not v148 or (v148<=0)) then return Color3.fromRGB(255,255,276 -(20 + 1) );end v150=math.clamp(v147/v148 ,0,1);v149=1;end end end local v21=v4:GetPlayers();local function v22() return v21;end local function v23() v21=v4:GetPlayers();end local v24={};local function v25(v151) local v152=0;local v153;local v154;local v155;local v156;while true do if (v152==(2 + 0)) then if (v156 and (v156.Health<=(319 -(134 + 185)))) then return nil;end if  not v153 then v153={};v24[v151]=v153;end v153.Char=v154;v153.Root=v155;v152=1136 -(549 + 584) ;end if ((686 -(314 + 371))==v152) then if ( not v154 or  not v154.Parent) then return nil;end v155=v154:FindFirstChild("HumanoidRootPart") or v154.PrimaryPart ;if  not v155 then return nil;end v156=v154:FindFirstChildOfClass("Humanoid");v152=2;end if ((0 -0)==v152) then if  not v151 then return nil;end v153=v24[v151];if v153 then local v891=0;local v892;local v893;while true do if (v891==(968 -(478 + 490))) then v892=v153.Char;v893=v153.Root;v891=1;end if (v891==1) then if (v892 and v892.Parent and (v892==v151.Character) and v893 and v893.Parent) then local v1086=0;while true do if (v1086==0) then if v153.Humanoid then local v1196=0;while true do if (v1196==0) then if (v153.Humanoid.Health>(0 + 0)) then return v892,v893;end return nil;end end end return v892,v893;end end else local v1087=0;local v1088;while true do if (v1087==0) then v1088=0;while true do if (v1088==(1172 -(786 + 386))) then v153.Char=nil;v153.Root=nil;v1088=1;end if (v1088==(3 -2)) then v153.Humanoid=nil;break;end end break;end end end break;end end end v154=v151.Character;v152=1;end if (v152==3) then v153.Humanoid=v156;v153.Head=v154:FindFirstChild("Head");return v154,v155;end end end local v26={Original={},Captured=false};local v27={["Humanoid/WalkSpeed"]="WalkSpeed",["Humanoid/JumpPower"]="JumpPower",["Humanoid/JumpHeight"]="JumpHeight",["Humanoid/HipHeight"]="HipHeight",["Humanoid/MaxHealth"]="MaxHealth"};local function v28() local v157=0;local v158;local v159;while true do if (v157==(1380 -(1055 + 324))) then if  not v159 then return;end v26.Original={};v157=2;end if (v157==(1342 -(1093 + 247))) then for v826,v827 in pairs(v27) do local v828=0;local v829;local v830;while true do if (v828==(0 + 0)) then v829,v830=pcall(function() return v159[v827];end);if (v829 and (v830~=nil)) then local v1070=0 + 0 ;local v1071;while true do if (v1070==(0 -0)) then v26.Original[v826]=v830;v1071=v11[v826   .. "/Locked" ]==true ;v1070=3 -2 ;end if (v1070==(2 -1)) then if ( not v1071 and (v11[v826]==nil)) then v11[v826]=v830;end break;end end end break;end end end v26.Captured=true;break;end if (v157==(0 -0)) then local v587=0 + 0 ;while true do if ((0 -0)==v587) then v158=v9.Character;v159=v158 and v158:FindFirstChildOfClass("Humanoid") ;v587=3 -2 ;end if ((1 + 0)==v587) then v157=2 -1 ;break;end end end end end local function v29() local v160=0;local v161;local v162;while true do if (v160==(689 -(364 + 324))) then local v588=0 -0 ;while true do if (v588==(2 -1)) then v160=1 + 1 ;break;end if (v588==(0 -0)) then v162=v161 and v161:FindFirstChildOfClass("Humanoid") ;if  not v162 then return;end v588=1 -0 ;end end end if (v160==(5 -3)) then for v831,v832 in pairs(v27) do local v833=1268 -(1249 + 19) ;local v834;while true do if (v833==0) then v834=v11[v831   .. "/Locked" ]==true ;if v834 then local v1072=0;local v1073;while true do if (v1072==(0 + 0)) then v1073=v11[v831];if (v1073~=nil) then pcall(function() if (v162[v832]~=v1073) then v162[v832]=v1073;end end);end break;end end end break;end end end break;end if (v160==(0 -0)) then if  not v26.Captured then return;end v161=v9.Character;v160=1087 -(686 + 400) ;end end end local v30={Head={"Head"},Torso={"Torso","UpperTorso","LowerTorso","HumanoidRootPart"},LeftArm={"Left Arm","LeftUpperArm","LeftLowerArm","LeftHand"},RightArm={"Right Arm","RightUpperArm","RightLowerArm","RightHand"},LeftLeg={"Left Leg","LeftUpperLeg","LeftLowerLeg","LeftFoot"},RightLeg={"Right Leg","RightUpperLeg","RightLowerLeg","RightFoot"}};local v31={};for v163,v164 in pairs(v30) do for v518,v519 in ipairs(v164) do table.insert(v31,v519);end end local v32={LastAimTarget=nil,LastMouseMode=nil,LastOriginX=nil,LastOriginY=nil};local function v33(v165) local v166=0 + 0 ;while true do if (v166==(1535 -(709 + 825))) then v32.LastOriginY=nil;if v165 then v32.LastMouseMode=nil;end break;end if (v166==(0 -0)) then v32.LastAimTarget=nil;v32.LastOriginX=nil;v166=1;end end end local v34=(function() local v167=0 -0 ;local v168;local v169;while true do if ((866 -(196 + 668))==v167) then return nil;end if (v167==(3 -2)) then v168,v169=pcall(function() local v835=0 -0 ;local v836;while true do if (v835==(833 -(171 + 662))) then v836=Enum.RaycastFilterType.Blacklist;if (typeof(v836)=="EnumItem") then return v836;end break;end end end);if (v168 and v169) then return v169;end v167=95 -(4 + 89) ;end if (v167==(0 -0)) then local v593=0 + 0 ;while true do if (v593==1) then v167=1;break;end if (v593==(0 -0)) then v168,v169=pcall(function() local v1005=0 + 0 ;local v1006;while true do if (v1005==0) then v1006=Enum.RaycastFilterType.Exclude;if (typeof(v1006)=="EnumItem") then return v1006;end break;end end end);if (v168 and v169) then return v169;end v593=1;end end end end end)();local v35=RaycastParams.new();v35.IgnoreWater=true;if v34 then v35.FilterType=v34;end local function v37(v170,v171,v172) local v173=1486 -(35 + 1451) ;while true do if (v173==0) then local v594=1453 -(28 + 1425) ;while true do if (v594==(1993 -(941 + 1052))) then v35.FilterDescendantsInstances=v172;return v8:Raycast(v170,v171,v35);end end end end end local v38={nil,nil};local function v39(v174,v175,v176,v177) local v178=0 -0 ;local v179;while true do if (v178==(1 + 1)) then local v595=297 -(45 + 252) ;while true do if (v595==(1 + 0)) then v178=2 + 1 ;break;end if ((0 -0)==v595) then v179=v37(v175,v176-v175 ,v38);if (v179 and v179.Instance and  not v179.Instance:IsDescendantOf(v177)) then return true;end v595=1;end end end if (v178==(436 -(114 + 319))) then return false;end if (v178==(1 -0)) then v38[1 -0 ]=v9.Character;v38[2]=v177;v178=2 + 0 ;end if ((0 -0)==v178) then if  not v174 then return false;end if (typeof(v176)~="Vector3") then return false;end v178=1;end end end local v40={};local v41={};local v42=64;local v43=math.floor;v5.RenderStepped:Connect(function() local v180=0;for v521,v522 in pairs(v40) do if (v180<v42) then v41[ #v41 + 1 ]=v522;v180=v180 + (1 -0) ;end end table.clear(v40);end);local function v44(v181) local v182=1963 -(556 + 1407) ;local v183;local v184;local v185;local v186;local v187;local v188;local v189;while true do if (v182==(1206 -(741 + 465))) then v183=v43(v181.X * (469 -(170 + 295)) );v184=v43(v181.Y * 4 );v185=v43(v181.Z * (3 + 1) );v182=1 + 0 ;end if ((4 -2)==v182) then local v600=0;while true do if ((1 + 0)==v600) then v187[1],v187[2 + 0 ]=v188,v189;v182=2 + 1 ;break;end if ((1230 -(957 + 273))==v600) then v188,v189=v10:WorldToViewportPoint(v181);v187=table.remove(v41) or {} ;v600=1 + 0 ;end end end if (v182==3) then v40[v186]=v187;return v188,v189;end if (v182==(1 + 0)) then local v602=0 -0 ;while true do if (v602==(2 -1)) then if v187 then return v187[2 -1 ],v187[9 -7 ];end v182=1782 -(389 + 1391) ;break;end if (v602==0) then v186=v183   .. "|"   .. v184   .. "|"   .. v185 ;v187=v40[v186];v602=1 + 0 ;end end end end end local function v45(v190) if  not v10 then v10=v8.CurrentCamera;end if  not v10 then return nil,nil,false;end local v191=v10.ViewportSize;if (v190==Enum.MouseBehavior.LockCenter) then return v191.X * 0.5 ,v191.Y * 0.5 ,true;end local v192=v6:GetMouseLocation();local v193=v192.X;local v194=v192.Y;if ((v193~=v193) or (v194~=v194)) then return nil,nil,false;end if ((v193<(0 + 0)) or (v194<0) or (v193>v191.X) or (v194>v191.Y)) then return nil,nil,false;end return v193,v194,true;end local v46={};local v47=0;local v48=15;local v49={nil,nil,nil,311 -(309 + 2) ,0,nil};local function v50(v195,v196) return v195.mag<v196.mag ;end local function v51(v197,v198,v199) for v523=1 + 1 ,v198 do local v524=0 -0 ;local v525;local v526;while true do if (v524==(0 + 0)) then v525=v197[v523];v526=v523-1 ;v524=1;end if (v524==1) then while (v526>0) and v199(v525,v197[v526])  do local v895=1118 -(628 + 490) ;local v896;while true do if (v895==(0 + 0)) then v896=0 -0 ;while true do if (v896==(0 -0)) then v197[v526 + (775 -(431 + 343)) ]=v197[v526];v526=v526-(1 -0) ;break;end end break;end end end v197[v526 + (2 -1) ]=v525;break;end end end end local v52={};local v53=nil;local function v54() local v200=0 + 0 ;local v201;while true do if (v200==0) then table.clear(v52);v201=false;v200=1 + 0 ;end if ((1696 -(556 + 1139))==v200) then for v839,v840 in pairs(v11["Aim/TargetGroups"]) do if v840 then local v949=15 -(6 + 9) ;while true do if (v949==(0 + 0)) then v201=true;for v1090,v1091 in ipairs(v30[v839]) do table.insert(v52,v1091);end break;end end end end if  not v201 then for v950,v951 in ipairs(v31) do table.insert(v52,v951);end end break;end end end local function v55(v202,v203,v204,v205,v206) if  not v202 then return nil;end local v207=v10.CFrame.Position;local v208=v6.MouseBehavior;local v209,v210,v211=v45(v208);if  not v211 then return nil;end v47=0;local v212=v22();local v213=v10.CFrame.LookVector;local v214=v48 * (2 + 1) ;local v215=((v11["Aim/TargetGroups"].Head and 1) or 0) + ((v11["Aim/TargetGroups"].Torso and (171 -(28 + 141))) or 0) + ((v11["Aim/TargetGroups"].LeftArm and (2 + 2)) or (0 -0)) + ((v11["Aim/TargetGroups"].RightArm and (6 + 2)) or 0) + ((v11["Aim/TargetGroups"].LeftLeg and (1333 -(486 + 831))) or (0 -0)) + ((v11["Aim/TargetGroups"].RightLeg and 32) or 0) ;if (v215~=v53) then v54();v53=v215;end local v216=v52;for v527,v528 in ipairs(v212) do if (v528==v9) then continue;end local v529,v530=v25(v528);if ( not v529 or  not v530) then continue;end if v203 then local v603,v604=v9.Team,v528.Team;if (v603 and v604 and (v603==v604)) then continue;end end local v531=v530.Position;local v532=v531-v207 ;if (v213:Dot(v532)<(0 -0)) then continue;end for v544,v545 in ipairs(v216) do local v546=0 + 0 ;local v547;local v548;local v549;local v550;local v551;while true do if (v546==(6 -4)) then v550,v551=v44(v549);if v551 then local v1007,v1008=v550.X,v550.Y;local v1009,v1010=v1007-v209 ,v1008-v210 ;local v1011=math.sqrt((v1009 * v1009) + (v1010 * v1010) );if (v1011<v205) then if (v47<v214) then local v1134=0;local v1135;while true do if (v1134==1) then v1135.ply=v528;v1135.char=v529;v1135.part=v548;v1135.sx=v1007;v1134=2;end if (v1134==(1265 -(668 + 595))) then v1135.sy=v1008;v1135.pos=v549;v1135.realPos=v549;break;end if (v1134==(0 + 0)) then v47=v47 + 1 ;v1135=v46[v47];if  not v1135 then local v1213=0 + 0 ;while true do if (v1213==0) then v1135={};v46[v47]=v1135;break;end end end v1135.mag=v1011;v1134=1;end end end end end break;end if (v546==(2 -1)) then if  not v548 then continue;end v549=v548.Position;v546=292 -(23 + 267) ;end if (v546==(1944 -(1129 + 815))) then v547=v24[v528];v548=(v547 and v547[v545]) or v529:FindFirstChild(v545) ;v546=388 -(371 + 16) ;end end end end if (v47==0) then return nil;end if (v47>(1751 -(1326 + 424))) then v51(v46,v47,v50);end if v206 then for v605=1 -0 ,v47 do local v606=v46[v605];if (v606.ply==v206) then if  not v39(v204,v207,v606.realPos,v606.char) then local v1012=0 -0 ;local v1013;while true do if (0==v1012) then v1013=0;while true do local v1136=118 -(88 + 30) ;while true do if (v1136==(772 -(720 + 51))) then if (v1013==(2 -1)) then v49[1779 -(421 + 1355) ]=v606.part;v49[6 -2 ]=v606.sx;v1013=1 + 1 ;end if (v1013==(1086 -(286 + 797))) then return v49;end break;end if (v1136==(0 -0)) then if (v1013==0) then v49[1]=v606.ply;v49[2 -0 ]=v606.char;v1013=440 -(397 + 42) ;end if (v1013==(1 + 1)) then v49[805 -(24 + 776) ]=v606.sy;v49[8 -2 ]=v606.pos;v1013=3;end v1136=786 -(222 + 563) ;end end end break;end end end break;end end end local v217=math.min(v47,v48);for v533=1 -0 ,v217 do local v534=0 + 0 ;local v535;while true do if (v534==(190 -(23 + 167))) then v535=v46[v533];if  not v535 then continue;end v534=1799 -(690 + 1108) ;end if (v534==(1 + 1)) then v49[2 + 0 ]=v535.char;v49[851 -(40 + 808) ]=v535.part;v534=1 + 2 ;end if (v534==(11 -8)) then v49[4 + 0 ]=v535.sx;v49[5]=v535.sy;v534=3 + 1 ;end if (v534==4) then v49[4 + 2 ]=v535.pos;return v49;end if (v534==(572 -(47 + 524))) then if v39(v204,v207,v535.realPos,v535.char) then continue;end v49[1]=v535.ply;v534=2;end end end return nil;end local function v56(v218) local v219=0 + 0 ;local v220;local v221;local v222;local v223;local v224;local v225;local v226;local v227;local v228;local v229;local v230;local v231;local v232;local v233;local v234;local v235;local v236;local v237;local v238;local v239;local v240;local v241;local v242;while true do if (v219==(0 -0)) then if  not v218 then local v899=0 -0 ;while true do if (v899==0) then local v1041=0;while true do if (v1041==(0 -0)) then v33(false);return;end end end end end if  not mousemoverel then return;end v220=v218[1729 -(1165 + 561) ];if ( not v220 or  not v220.Parent) then local v900=0 + 0 ;while true do if (v900==0) then v33(false);return;end end end v221=v6.MouseBehavior;if (v221~=v32.LastMouseMode) then v32.LastMouseMode=v221;v32.LastOriginX=nil;v32.LastOriginY=nil;end v219=3 -2 ;end if (v219==(2 + 3)) then v242=v228.Y * (479.5 -(341 + 138)) ;v239=math.clamp(v239, -v241,v241);v240=math.clamp(v240, -v242,v242);mousemoverel(math.floor(v239 + 0.5 ),math.floor(v240 + 0.5 ));break;end if (v219==2) then v226,v227=v44(v223);if ( not v227 or (v226.Z<=(0 + 0))) then return;end v228=v10.ViewportSize;v229,v230,v231=v45(v221);if  not v231 then return;end v32.LastOriginX=v229;v219=5 -2 ;end if (v219==(327 -(89 + 237))) then local v611=0 -0 ;while true do if (v611==(0 -0)) then v222=v218[882 -(581 + 300) ];if (v222~=v32.LastAimTarget) then local v1042=1220 -(855 + 365) ;while true do if (v1042==(0 -0)) then v32.LastAimTarget=v222;v32.LastOriginX=nil;v1042=1;end if (v1042==(1 + 0)) then v32.LastOriginY=nil;break;end end end v611=1236 -(1030 + 205) ;end if (v611==(3 + 0)) then v219=2 + 0 ;break;end if (v611==(288 -(156 + 130))) then v225=(v223-v224).Magnitude;if (v225<(2 -1)) then return;end v611=4 -1 ;end if (v611==(1 -0)) then v223=v220.Position;v224=v10.CFrame.Position;v611=1 + 1 ;end end end if (v219==(2 + 1)) then v32.LastOriginY=v230;v232,v233=v226.X,v226.Y;v234,v235=v232-v229 ,v233-v230 ;v236=math.sqrt((v234 * v234) + (v235 * v235) );if (v236>v11["Aim/FOV/Radius"]) then return;end v237=v11["Aim/AttractionStrength"]/(169 -(10 + 59)) ;v219=2 + 2 ;end if (v219==4) then if v11["Aim/Dampening"] then local v904=0;local v905;while true do if (v904==(0 -0)) then v905=v11["Aim/Dampening/Threshold"];if (v236<v905) then local v1092=0;local v1093;while true do if (v1092==(1163 -(671 + 492))) then v1093=math.max(v11["Aim/Dampening/Strength"]/(80 + 20) ,v236/v905 );v237=v237 * v1093 ;break;end end end break;end end end v238=1215.2 -(369 + 846) ;v239=v234 * v238 * v237 ;v240=v235 * v238 * v237 ;if ((v239~=v239) or (v240~=v240)) then return;end v241=v228.X * 0.5 ;v219=2 + 3 ;end end end local v57=nil;local v58=0 + 0 ;local v59=1945.016 -(1036 + 909) ;local function v60() local v243=0 + 0 ;local v244;while true do local v536=0 -0 ;while true do if (v536==(203 -(11 + 192))) then if (v243==(2 + 0)) then return v57;end if (v243==(176 -(135 + 40))) then v57=v55(true,v11["Aim/TeamCheck"],v11["Aim/VisibilityCheck"],v11["Aim/FOV/Radius"],v32.LastAimTarget);v58=v244;v243=4 -2 ;end v536=1 + 0 ;end if ((2 -1)==v536) then if (v243==0) then v244=os.clock();if (v57 and ((v244-v58)<v59)) then return v57;end v243=1 -0 ;end break;end end end end local v61=nil;local v62=nil;local function v63() local v245=176 -(50 + 126) ;local v246;while true do if (v245==(5 -3)) then v61.ResetOnSpawn=false;v61.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;pcall(function() v61.Parent=v246;end);v245=3;end if (v245==(0 + 0)) then if (v61 and v61.Parent) then return v61;end v246=(gethui and gethui()) or game:GetService("CoreGui") ;v61=Instance.new("ScreenGui");v245=1414 -(1233 + 180) ;end if ((970 -(522 + 447))==v245) then v61.Name="YH_FOV";v61.DisplayOrder=6421 -(107 + 1314) ;v61.IgnoreGuiInset=true;v245=2;end if (v245==(2 + 1)) then if  not v61.Parent then v61.Parent=game:GetService("CoreGui");end return v61;end end end local function v64() local v247=v11["Aim/AimLock"] and v11["Aim/FOV/ShowCircle"] ;if  not v247 then local v552=0 -0 ;while true do if (v552==(0 + 0)) then local v907=0 -0 ;while true do if (v907==0) then if v62 then v62.Visible=false;end return;end end end end end local v248=v63();if ( not v62 or (v62.Parent~=v248)) then local v553=0 -0 ;local v554;local v555;while true do if (v553==3) then v555.Thickness=1911.5 -(716 + 1194) ;v555.Color=Color3.fromRGB(89,4 + 206 ,28 + 227 );v555.Transparency=503.2 -(74 + 429) ;v555.ApplyStrokeMode=Enum.ApplyStrokeMode.Border;v553=4;end if (v553==0) then if v62 then v17(v62);end v62=Instance.new("Frame");v62.Name="FOVCircle";v62.BackgroundTransparency=1 -0 ;v553=1 + 0 ;end if (v553==2) then v554.CornerRadius=UDim.new(2 -1 ,0);v554.Parent=v62;v555=Instance.new("UIStroke");v555.Name="Stroke";v553=3;end if ((3 + 1)==v553) then v555.Parent=v62;v62.Parent=v248;break;end if (v553==(2 -1)) then v62.BorderSizePixel=0 -0 ;v62.AnchorPoint=Vector2.new(0.5,433.5 -(279 + 154) );v62.ZIndex=1;v554=Instance.new("UICorner");v553=780 -(454 + 324) ;end end end local v249=v6.MouseBehavior;local v250,v251,v252=v45(v249);if v252 then local v556=0 + 0 ;local v557;local v558;while true do if (v556==(17 -(12 + 5))) then local v923=0 + 0 ;while true do if (v923==(2 -1)) then v556=1 + 0 ;break;end if ((1093 -(277 + 816))==v923) then v557=v11["Aim/FOV/Radius"] or (213 -163) ;v558=v557 * 2 ;v923=1184 -(1058 + 125) ;end end end if (v556==1) then v62.Size=UDim2.fromOffset(v558,v558);v62.Position=UDim2.fromOffset(v250,v251);v556=1 + 1 ;end if ((977 -(815 + 160))==v556) then v62.Visible=true;break;end end else v62.Visible=false;end end local function v65() local v253=0;local v254;local v255;while true do if (v253==(0 -0)) then pcall(v64);if v3 then return;end v253=2 -1 ;end if (v253==(1 + 1)) then v255=v60();if v255 then v56(v255);else v33(false);end break;end if (v253==1) then v254=v11["Aim/AimLock"];if  not v254 then local v927=0 -0 ;while true do if (v927==(1898 -(41 + 1857))) then local v1044=1893 -(1222 + 671) ;while true do if (v1044==(0 -0)) then v33(false);return;end end end end end v253=2 -0 ;end end end local v66={Objects={},Folder=nil};local function v67() local v256=1182 -(229 + 953) ;local v257;while true do if (v256==1) then v66.Folder=Instance.new("Folder");v66.Folder.Name="YH_ESP";v256=1776 -(1111 + 663) ;end if (v256==0) then if (v66.Folder and v66.Folder.Parent) then return v66.Folder;end v257=(gethui and gethui()) or game:GetService("CoreGui") ;v256=1580 -(874 + 705) ;end if (2==v256) then pcall(function() v66.Folder.Parent=v257;end);if  not v66.Folder.Parent then v66.Folder.Parent=game:GetService("CoreGui");end v256=3;end if (v256==(1 + 2)) then return v66.Folder;end end end local function v68(v258) local v259=0;local v260;local v261;local v262;local v263;local v264;local v265;local v266;local v267;local v268;local v269;local v270;local v271;while true do if (v259==(8 + 3)) then v271.OutlineTransparency=v11["ESP/HighlightOutlineAlpha"];v271.Enabled=false;v271.Parent=v260;v66.Objects[v258]={Nametag=v261,Label=v263,HealthNum=v264,HealthBarBG=v265,HealthBarFill=v267,DistanceLabel=v269,EquippedLabel=v270,Highlight=v271,LastName=v258.Name,LastRole=nil,LastHealth= -(1 -0),LastMaxHealth= -(1 + 0),LastDistance= -1,LastEquipped=""};break;end if (v259==(681 -(642 + 37))) then v263.Name="NameLabel";v263.Size=UDim2.new(1 + 0 ,0,0 + 0 ,44 -26 );v263.BackgroundTransparency=455 -(233 + 221) ;v263.Text=v258.Name;v263.TextColor3=v15.Unknown;v263.TextStrokeTransparency=0;v263.TextStrokeColor3=Color3.fromRGB(0 -0 ,0 + 0 ,1541 -(718 + 823) );v263.TextSize=9 + 5 ;v263.Font=Enum.Font.GothamBold;v259=3;end if (v259==4) then v264.TextStrokeTransparency=805 -(266 + 539) ;v264.TextStrokeColor3=Color3.fromRGB(0,0 -0 ,1225 -(636 + 589) );v264.TextSize=30 -17 ;v264.Font=Enum.Font.GothamBold;v264.TextTransparency=v11["ESP/NametagOpacity"];v264.LayoutOrder=3 -1 ;v264.Visible=v11["ESP/HealthIndicator"];v264.Parent=v261;v265=Instance.new("Frame");v259=4 + 1 ;end if ((2 + 3)==v259) then v265.Name="HealthBarBG";v265.Size=UDim2.new(0.7,0,1015 -(657 + 358) ,5);v265.BackgroundColor3=Color3.fromRGB(529 -329 ,113 -63 ,50);v265.BorderSizePixel=1187 -(1151 + 36) ;v265.LayoutOrder=3 + 0 ;v265.Visible=v11["ESP/HealthIndicator"];v265.Parent=v261;v266=Instance.new("UICorner");v266.CornerRadius=UDim.new(1,0 + 0 );v259=17 -11 ;end if (v259==(1840 -(1552 + 280))) then v269.TextSize=12;v269.Font=Enum.Font.GothamMedium;v269.TextTransparency=v11["ESP/NametagOpacity"];v269.LayoutOrder=838 -(64 + 770) ;v269.Visible=v11["ESP/ShowDistance"];v269.Parent=v261;v270=Instance.new("TextLabel");v270.Name="EquippedLabel";v270.Size=UDim2.new(1 + 0 ,0,0 -0 ,3 + 13 );v259=9;end if (v259==(1246 -(157 + 1086))) then v263.TextTransparency=v11["ESP/NametagOpacity"];v263.LayoutOrder=1;v263.Parent=v261;v264=Instance.new("TextLabel");v264.Name="HealthNum";v264.Size=UDim2.new(1 -0 ,0 -0 ,0 -0 ,16);v264.BackgroundTransparency=1 -0 ;v264.Text="100/100";v264.TextColor3=Color3.fromRGB(1074 -(599 + 220) ,507 -252 ,2186 -(1813 + 118) );v259=4;end if (v259==(1 + 0)) then v261.Parent=v260;v262=Instance.new("UIListLayout");v262.FillDirection=Enum.FillDirection.Vertical;v262.HorizontalAlignment=Enum.HorizontalAlignment.Center;v262.VerticalAlignment=Enum.VerticalAlignment.Bottom;v262.SortOrder=Enum.SortOrder.LayoutOrder;v262.Padding=UDim.new(0,1);v262.Parent=v261;v263=Instance.new("TextLabel");v259=1219 -(841 + 376) ;end if (v259==7) then v268.Parent=v267;v269=Instance.new("TextLabel");v269.Name="DistanceLabel";v269.Size=UDim2.new(1 -0 ,0 + 0 ,0,43 -27 );v269.BackgroundTransparency=1;v269.Text="0";v269.TextColor3=Color3.fromRGB(1059 -(464 + 395) ,200,513 -313 );v269.TextStrokeTransparency=0;v269.TextStrokeColor3=Color3.fromRGB(0 + 0 ,0,837 -(467 + 370) );v259=16 -8 ;end if (9==v259) then v270.BackgroundTransparency=1 + 0 ;v270.Text="[Unarmed]";v270.TextColor3=Color3.fromRGB(685 -485 ,32 + 168 ,465 -265 );v270.TextStrokeTransparency=520 -(150 + 370) ;v270.TextStrokeColor3=Color3.fromRGB(0,0,1282 -(74 + 1208) );v270.TextSize=28 -16 ;v270.Font=Enum.Font.GothamMedium;v270.TextTransparency=v11["ESP/NametagOpacity"];v270.LayoutOrder=23 -18 ;v259=10;end if (v259==6) then v266.Parent=v265;v267=Instance.new("Frame");v267.Name="HealthBarFill";v267.Size=UDim2.fromScale(1 + 0 ,1);v267.BackgroundColor3=Color3.fromRGB(460 -(14 + 376) ,381 -161 ,65 + 35 );v267.BorderSizePixel=0;v267.Parent=v265;v268=Instance.new("UICorner");v268.CornerRadius=UDim.new(1 + 0 ,0 + 0 );v259=20 -13 ;end if (v259==10) then v270.Visible=v11["ESP/ShowEquipped"];v270.Parent=v261;v271=Instance.new("Highlight");v271.Name="PV_HL_"   .. v258.Name ;v271.Adornee=nil;v271.DepthMode=Enum.HighlightDepthMode.AlwaysOnTop;v271.FillColor=v15.Unknown;v271.FillTransparency=v11["ESP/HighlightFillAlpha"];v271.OutlineColor=v15.Unknown;v259=9 + 2 ;end if (v259==(78 -(23 + 55))) then v260=v67();v261=Instance.new("BillboardGui");v261.Name="PV_"   .. v258.Name ;v261.Adornee=nil;v261.AlwaysOnTop=true;v261.Size=UDim2.new(0,473 -273 ,0 + 0 ,81 + 9 );v261.StudsOffset=Vector3.new(0 -0 ,1.2000000000000002 + 2 ,0);v261.MaxDistance=v11["ESP/MaxDistance"];v261.Enabled=false;v259=902 -(652 + 249) ;end end end local function v69(v272) local v273=v66.Objects[v272];if  not v273 then return;end v17(v273.Nametag);if v273.Highlight then v17(v273.Highlight);end v66.Objects[v272]=nil;end local function v70(v275) local v276=v66.Objects[v275];if  not v276 then return;end local v277=v11["ESP/Enabled"];if (v277 and v11["ESP/TeamCheck"]) then if (v275.Team and v9.Team and (v275.Team==v9.Team)) then v277=false;end end if (v277 and (v275==v9)) then v277=false;end local v278=v275.Character;local v279=v278 and (v278:FindFirstChild("HumanoidRootPart") or v278.PrimaryPart) ;local v280=v278 and v278:FindFirstChildOfClass("Humanoid") ;if ( not v279 or  not v280 or (v280.Health<=(0 -0))) then v277=false;end local v281=1868 -(708 + 1160) ;if v277 then local v560=v9.Character and (v9.Character:FindFirstChild("HumanoidRootPart") or v9.Character.PrimaryPart) ;if v560 then local v856=0 -0 ;local v857;while true do if (v856==(0 -0)) then v857=27 -(10 + 17) ;while true do if (v857==0) then v281=(v279.Position-v560.Position).Magnitude;if (v281>v11["ESP/MaxDistance"]) then v277=false;end break;end end break;end end end end if  not v277 then v16(v276.Nametag,"Enabled",false);if v276.Highlight then v16(v276.Highlight,"Enabled",false);end return;end if (v276.Nametag.Adornee~=v279) then v276.Nametag.Adornee=v279;end v16(v276.Nametag,"Enabled",true);v16(v276.Nametag,"MaxDistance",v11["ESP/MaxDistance"]);if v276.Highlight then local v562=0 + 0 ;local v563;while true do if ((1733 -(1400 + 332))==v562) then v16(v276.Highlight,"Enabled",v563);break;end if (v562==(0 -0)) then v563=v11["ESP/HighlightEnabled"];if (v276.Highlight.Adornee~=v278) then v276.Highlight.Adornee=v278;end v562=1909 -(242 + 1666) ;end end end if v11["ESP/ShowUsername"] then local v564=0 + 0 ;local v565;while true do if (0==v564) then v565=0 + 0 ;while true do if (v565==(0 + 0)) then if (v276.LastName~=v275.Name) then local v1096=940 -(850 + 90) ;while true do if ((0 -0)==v1096) then v276.LastName=v275.Name;v16(v276.Label,"Text",v275.Name);break;end end end v16(v276.Label,"Visible",true);break;end end break;end end else v16(v276.Label,"Visible",false);end local v282,v283=v19(v275);if v276.HealthNum then local v566=0;while true do if ((1390 -(360 + 1030))==v566) then v16(v276.HealthNum,"Visible",v11["ESP/HealthIndicator"]);if ((v276.LastHealth~=math.floor(v282)) or (v276.LastMaxHealth~=math.floor(v283))) then local v1015=0 + 0 ;local v1016;while true do if (v1015==2) then v16(v276.HealthNum,"TextColor3",v1016);if v276.HealthBarFill then local v1157=0 -0 ;local v1158;while true do if (v1157==0) then v1158=math.clamp(v282/math.max(v283,1 -0 ) ,1661 -(909 + 752) ,1224 -(109 + 1114) );v16(v276.HealthBarFill,"Size",UDim2.fromScale(v1158,1 -0 ));v1157=1;end if (v1157==(1 + 0)) then v16(v276.HealthBarFill,"BackgroundColor3",v1016);break;end end end break;end if (v1015==1) then v16(v276.HealthNum,"Text",string.format("%d / %d",math.floor(v282),math.floor(v283)));v1016=v20(v282,v283);v1015=2;end if (v1015==(242 -(6 + 236))) then v276.LastHealth=math.floor(v282);v276.LastMaxHealth=math.floor(v283);v1015=1 + 0 ;end end end break;end end end if v276.HealthBarBG then v16(v276.HealthBarBG,"Visible",v11["ESP/HealthIndicator"]);end if v276.DistanceLabel then local v567=0 + 0 ;local v568;while true do if (v567==(0 -0)) then v16(v276.DistanceLabel,"Visible",v11["ESP/ShowDistance"]);v568=math.floor(v281);v567=1 -0 ;end if (v567==(1134 -(1076 + 57))) then if (math.abs(v276.LastDistance-v568 )>=(1 + 0)) then local v1017=0;while true do if ((689 -(579 + 110))==v1017) then v276.LastDistance=v568;v16(v276.DistanceLabel,"Text",string.format("%d studs",v568));break;end end end break;end end end if v276.EquippedLabel then local v569=0 + 0 ;local v570;local v571;local v572;while true do if (v569==2) then if (v276.LastEquipped~=v572) then local v1018=0 + 0 ;while true do if (v1018==(0 + 0)) then v276.LastEquipped=v572;v16(v276.EquippedLabel,"Text",v572);break;end end end break;end if (v569==(408 -(174 + 233))) then v571=(v570 and v570.Name) or "Unarmed" ;v572="["   .. v571   .. "]" ;v569=5 -3 ;end if (v569==(0 -0)) then v16(v276.EquippedLabel,"Visible",v11["ESP/ShowEquipped"]);v570=v278:FindFirstChildOfClass("Tool");v569=1 + 0 ;end end end local v284=(v11["ESP/ColorByRole"] and v18(v275)) or nil ;if v284 then if (v276.LastRole~=v284) then local v858=1174 -(663 + 511) ;local v859;while true do if (1==v858) then v16(v276.Label,"TextColor3",v859);if v276.Highlight then local v1074=0;while true do if (v1074==0) then v16(v276.Highlight,"FillColor",v859);v16(v276.Highlight,"OutlineColor",v859);break;end end end break;end if (v858==(0 + 0)) then v276.LastRole=v284;v859=v15[v284] or v15.Unknown ;v858=1 + 0 ;end end end elseif (v276.LastRole~="plain") then local v860=0;while true do if (1==v860) then if v276.Highlight then local v1075=0 -0 ;while true do if (v1075==0) then v16(v276.Highlight,"FillColor",v15.Neutral);v16(v276.Highlight,"OutlineColor",v15.Neutral);break;end end end break;end if ((0 + 0)==v860) then v276.LastRole="plain";v16(v276.Label,"TextColor3",v15.Neutral);v860=2 -1 ;end end end end local function v71() local v285=0 -0 ;local v286;while true do if (v285==(1 + 0)) then for v861,v862 in pairs(v66.Objects) do if  not v861.Parent then v69(v861);end end break;end if (v285==(0 -0)) then v286=v4:GetPlayers();for v863,v864 in ipairs(v286) do if (v864~=v9) then local v956=0 + 0 ;while true do if (v956==(0 + 0)) then if  not v66.Objects[v864] then v68(v864);end v70(v864);break;end end end end v285=1;end end end local v72={Objects={},Gui=nil};local function v73() local v287=0;local v288;local v289;local v290;while true do local v537=0;while true do if (v537==(722 -(478 + 244))) then if (v287==(519 -(440 + 77))) then local v957=0 + 0 ;while true do if (v957==(0 -0)) then v289=(gethui and gethui()) or game:GetService("CoreGui") ;v290=pcall(function() v288.Parent=v289;end);v957=1;end if ((1557 -(655 + 901))==v957) then if ( not v290 or  not v288.Parent) then v288.Parent=v9:WaitForChild("PlayerGui");end v287=1 + 2 ;break;end end end if (v287==(1 + 0)) then v288.IgnoreGuiInset=true;v288.ResetOnSpawn=false;v288.DisplayOrder=998;v287=2 + 0 ;end v537=1;end if (v537==1) then if (v287==(11 -8)) then local v961=0;while true do if (v961==(1445 -(695 + 750))) then v72.Gui=v288;return v288;end end end if (v287==(0 -0)) then if (v72.Gui and v72.Gui.Parent) then return v72.Gui;end v288=Instance.new("ScreenGui");v288.Name="YH_ESP2D";v287=1;end break;end end end end local function v74(v291) local v292=0;local v293;local v294;local v295;local v296;local v297;local v298;while true do if (v292==(3 -0)) then v297=Instance.new("Frame");v297.Name="HealthBG";v297.BackgroundColor3=Color3.fromRGB(48 -36 ,366 -(285 + 66) ,43 -24 );v297.BackgroundTransparency=1310.12 -(682 + 628) ;v297.BorderSizePixel=0;v297.Visible=false;v292=1 + 3 ;end if (v292==(300 -(176 + 123))) then v294.Parent=v293;v295=Instance.new("Frame");v295.Name="Box";v295.BackgroundTransparency=1 + 0 ;v295.BorderSizePixel=0;v295.Size=UDim2.fromScale(1 + 0 ,1);v292=2;end if ((273 -(239 + 30))==v292) then v297.Parent=v293;v298=Instance.new("Frame");v298.Name="HealthFill";v298.BackgroundColor3=Color3.fromRGB(22 + 58 ,230,125 + 5 );v298.BorderSizePixel=0 -0 ;v298.Parent=v297;v292=15 -10 ;end if (v292==(317 -(306 + 9))) then v295.Parent=v294;v296=Instance.new("UIStroke");v296.Thickness=3.5 -2 ;v296.Color=v15.Unknown;v296.Transparency=0.04 + 0 ;v296.Parent=v295;v292=3;end if (v292==0) then v293=v73();v294=Instance.new("Frame");v294.Name="P_"   .. v291.UserId ;v294.BackgroundTransparency=1;v294.BorderSizePixel=0 + 0 ;v294.Visible=false;v292=1 + 0 ;end if (5==v292) then v72.Objects[v291]={Root=v294,Box=v295,Stroke=v296,HealthBG=v297,HealthFill=v298};break;end end end local function v75(v299) local v300=0 -0 ;local v301;while true do if (0==v300) then v301=v72.Objects[v299];if  not v301 then return;end v300=1;end if (v300==1) then v17(v301.Root);v17(v301.HealthBG);v300=1377 -(1140 + 235) ;end if (v300==2) then v72.Objects[v299]=nil;break;end end end local function v76() local v302=0 + 0 ;local v303;while true do if (v302==(0 + 0)) then v303=v8.CurrentCamera;if  not v303 then return;end v302=1;end if (v302==(1 + 0)) then for v865,v866 in ipairs(v4:GetPlayers()) do if (v866~=v9) then if  not v72.Objects[v866] then v74(v866);end local v963=v72.Objects[v866];local v964=v866.Character;local v965=v964 and v964:FindFirstChildOfClass("Humanoid") ;local v966=v11["ESP/Enabled"] and (v11["ESP/BoxEnabled"] or v11["ESP/HealthBarEnabled"]) and v964 and v965 and (v965.Health>(52 -(33 + 19))) ;if (v966 and v11["ESP/TeamCheck"] and v866.Team and v9.Team and (v866.Team==v9.Team)) then v966=false;end local v967=v964 and (v964:FindFirstChild("HumanoidRootPart") or v964.PrimaryPart) ;local v968=v9.Character and (v9.Character:FindFirstChild("HumanoidRootPart") or v9.Character.PrimaryPart) ;if (v966 and v967 and v968) then local v1045=0 + 0 ;local v1046;while true do if (v1045==0) then v1046=(v967.Position-v968.Position).Magnitude;if (v1046>(v11["ESP/MaxDistance"] or 5000)) then v966=false;end break;end end end if v966 then local v1047,v1048,v1049=pcall(function() return v964:GetBoundingBox();end);if (v1047 and v1048 and v1049) then local v1102=v1049 * 0.5 ;local v1103={Vector3.new( -v1102.X, -v1102.Y, -v1102.Z),Vector3.new( -v1102.X, -v1102.Y,v1102.Z),Vector3.new( -v1102.X,v1102.Y, -v1102.Z),Vector3.new( -v1102.X,v1102.Y,v1102.Z),Vector3.new(v1102.X, -v1102.Y, -v1102.Z),Vector3.new(v1102.X, -v1102.Y,v1102.Z),Vector3.new(v1102.X,v1102.Y, -v1102.Z),Vector3.new(v1102.X,v1102.Y,v1102.Z)};local v1104,v1105,v1106,v1107=math.huge,math.huge, -math.huge, -math.huge;local v1108=false;for v1142,v1143 in ipairs(v1103) do local v1144=689 -(586 + 103) ;local v1145;local v1146;while true do if (v1144==(0 + 0)) then v1145,v1146=v303:WorldToViewportPoint(v1048:PointToWorldSpace(v1143));if (v1145.Z>(0 -0)) then local v1226=1488 -(1309 + 179) ;while true do if (v1226==(0 -0)) then v1108=true;v1104,v1105=math.min(v1104,v1145.X),math.min(v1105,v1145.Y);v1226=1;end if (v1226==1) then v1106,v1107=math.max(v1106,v1145.X),math.max(v1107,v1145.Y);break;end end end break;end end end if (v1108 and (v1106>v1104) and (v1107>v1105)) then local v1159=0 + 0 ;local v1160;local v1161;local v1162;local v1163;local v1164;local v1165;while true do if (v1159==0) then v1104,v1105=math.floor(v1104),math.floor(v1105);v1106,v1107=math.floor(v1106),math.floor(v1107);v963.Root.Position=UDim2.fromOffset(v1104,v1105);v963.Root.Size=UDim2.fromOffset(math.max(2,v1106-v1104 ),math.max(5 -3 ,v1107-v1105 ));v1159=1 + 0 ;end if (v1159==(3 -1)) then v963.Stroke.Color=v1160;v1161,v1162=v19(v866);v1163=math.clamp(v1161/math.max(v1162,1) ,0,1 -0 );v1164=v20(v1161,v1162);v1159=612 -(295 + 314) ;end if (v1159==(2 -1)) then v963.Root.Visible=true;v963.Box.Visible=v11["ESP/BoxEnabled"];v1160=v15.Neutral;if v11["ESP/ColorByRole"] then local v1239=1962 -(1300 + 662) ;local v1240;while true do if (v1239==0) then v1240=v18(v866);v1160=v15[v1240] or v15.Unknown ;break;end end end v1159=6 -4 ;end if (v1159==4) then if v11["ESP/HealthBarVertical"] then local v1241=1755 -(1178 + 577) ;while true do if (v1241==(2 + 0)) then v963.HealthFill.Size=UDim2.new(2 -1 ,1405 -(851 + 554) ,v1163,0);break;end if (v1241==(0 + 0)) then v963.HealthBG.Position=UDim2.fromOffset(v1104-(19 -12) ,v1105);v963.HealthBG.Size=UDim2.fromOffset(4,math.max(3 -1 ,v1107-v1105 ));v1241=303 -(115 + 187) ;end if (v1241==1) then v963.HealthFill.AnchorPoint=Vector2.new(0 + 0 ,1 + 0 );v963.HealthFill.Position=UDim2.new(0 -0 ,1161 -(160 + 1001) ,1,0 + 0 );v1241=2 + 0 ;end end else local v1242=0;local v1243;while true do if (v1242==0) then v1243=0 -0 ;while true do if (v1243==(359 -(237 + 121))) then v963.HealthFill.AnchorPoint=Vector2.new(897 -(525 + 372) ,0);v963.HealthFill.Position=UDim2.fromOffset(0,0 -0 );v1243=2;end if ((6 -4)==v1243) then v963.HealthFill.Size=UDim2.new(v1163,142 -(96 + 46) ,1,777 -(643 + 134) );break;end if (v1243==(0 + 0)) then v963.HealthBG.Position=UDim2.fromOffset(v1104,v1107 + (9 -5) );v963.HealthBG.Size=UDim2.fromOffset(math.max(2,v1106-v1104 ),4);v1243=3 -2 ;end end break;end end end break;end if (v1159==(3 + 0)) then v1165=v11["ESP/HealthBarEnabled"];v963.HealthBG.Visible=v1165;v963.HealthBG.BackgroundColor3=Color3.fromRGB(12,29 -14 ,19);v963.HealthFill.BackgroundColor3=v1164;v1159=7 -3 ;end end else local v1166=0;local v1167;while true do if (v1166==(719 -(316 + 403))) then v1167=0;while true do if (v1167==0) then v963.Root.Visible=false;v963.HealthBG.Visible=false;break;end end break;end end end else local v1109=0 + 0 ;while true do if (v1109==(0 -0)) then v963.Root.Visible=false;v963.HealthBG.Visible=false;break;end end end else local v1050=0 + 0 ;local v1051;while true do if (v1050==(0 -0)) then v1051=0;while true do if (v1051==0) then v963.Root.Visible=false;v963.HealthBG.Visible=false;break;end end break;end end end end end for v867 in pairs(v72.Objects) do if  not v867.Parent then v75(v867);end end break;end end end local v77={Broken={},BrokenCount=0,OverlapParams=OverlapParams.new(),RaycastParams=RaycastParams.new(),ScratchIgnore={}};v77.OverlapParams.FilterType=Enum.RaycastFilterType.Exclude;v77.OverlapParams.MaxParts=0;v77.RaycastParams.FilterType=Enum.RaycastFilterType.Exclude;v77.RaycastParams.IgnoreWater=true;local v83={};local function v84(v304) local v305=0;local v306;local v307;local v308;local v309;local v310;local v311;while true do local v538=0;while true do if ((1 + 0)==v538) then if (v305==3) then local v969=0 + 0 ;while true do if (v969==(0 -0)) then for v1110,v1111 in ipairs(v311) do local v1112=0 -0 ;local v1113;local v1114;local v1115;while true do if ((0 -0)==v1112) then v1113=v308 + v310:VectorToWorldSpace(v1111) ;v1114,v1115=pcall(function() return v8:Raycast(v1113,v309,v77.RaycastParams);end);v1112=1 + 0 ;end if (1==v1112) then if (v1114 and v1115 and v1115.Instance) then v83[v1115.Instance]=true;end break;end end end return v83;end end end if (v305==(1 -0)) then v307=v77.ScratchIgnore;table.clear(v307);v307[1 + 0 ]=v304;v77.RaycastParams.FilterDescendantsInstances=v307;v305=5 -3 ;end break;end if (v538==0) then if (v305==2) then v308=v306.Position-Vector3.new(17 -(12 + 5) ,7.5 -5 ,0) ;v309=Vector3.new(0, -(25 -13),0 -0 );v310=v306.CFrame;v311={Vector3.new(0,0 + 0 ,1973 -(1656 + 317) ),Vector3.new( -(1.2 + 0),0 -0 , -1.2),Vector3.new(4.2 -3 ,354 -(5 + 349) , -(4.2 -3)),Vector3.new( -(1.2 + 0),0 -0 ,1.2 -0 ),Vector3.new(1697.2 -(561 + 1135) ,0 -0 ,1.2)};v305=9 -6 ;end if (v305==(1066 -(507 + 559))) then table.clear(v83);if  not v304 then return v83;end v306=v304:FindFirstChild("HumanoidRootPart") or v304.PrimaryPart ;if  not v306 then return v83;end v305=2 -1 ;end v538=1;end end end end local function v85(v312,v313) local v314=0 -0 ;local v315;local v316;local v317;while true do if (v314==(388 -(212 + 176))) then if ( not v312 or  not v312:IsA("BasePart")) then return false;end if v312:IsA("Terrain") then return false;end if  not v312.Parent then return false;end v315=v9.Character;v314=906 -(250 + 655) ;end if (v314==2) then if (v313 and v313[v312]) then return false;end v317=string.lower(v312.Name);if ((v317=="baseplate") or (v317=="ground") or (v317=="floor") or (v317=="terrain") or (v317=="base")) then return false;end if ((v312.Size.X>(1090 -690)) and (v312.Size.Z>400)) then return false;end v314=3;end if ((5 -2)==v314) then if v312.Anchored then if  not v11["Noclip/IncludeAnchored"] then return false;end elseif  not v11["Noclip/IncludeUnanchored"] then return false;end return true;end if (v314==(1 -0)) then if (v315 and v312:IsDescendantOf(v315)) then return false;end v316=v312:FindFirstAncestorOfClass("Model");if (v316 and v4:GetPlayerFromCharacter(v316)) then return false;end if v312:IsA("SpawnLocation") then return false;end v314=2;end end end local function v86(v318) local v319=0;local v320;while true do if (v319==(1956 -(1869 + 87))) then v320=0 -0 ;while true do if (v320==0) then if v77.Broken[v318] then local v1052=0;while true do if (v1052==(1901 -(484 + 1417))) then if v318.CanCollide then pcall(function() v318.CanCollide=false;end);end return;end end end v77.Broken[v318]={cc=v318.CanCollide};v320=2 -1 ;end if (v320==(1 -0)) then v77.BrokenCount=v77.BrokenCount + 1 ;pcall(function() v318.CanCollide=false;end);break;end end break;end end end local function v87(v321) local v322=0;local v323;while true do if (v322==1) then pcall(function() if (v321 and v321.Parent and (type(v323)=="table")) then v321.CanCollide=v323.cc;end end);v77.Broken[v321]=nil;v322=775 -(48 + 725) ;end if (v322==(2 -0)) then v77.BrokenCount=math.max(0 -0 ,v77.BrokenCount-(1 + 0) );break;end if (v322==(0 -0)) then v323=v77.Broken[v321];if  not v323 then return;end v322=1 + 0 ;end end end local function v88() local v324=0 + 0 ;while true do if (v324==0) then for v868,v869 in pairs(v77.Broken) do pcall(function() if (v868 and v868.Parent and (type(v869)=="table")) then v868.CanCollide=v869.cc;end end);end v77.Broken={};v324=854 -(152 + 701) ;end if (v324==(1312 -(430 + 881))) then v77.BrokenCount=0 + 0 ;break;end end end local function v89() local v325=895 -(557 + 338) ;local v326;local v327;local v328;local v329;local v330;local v331;local v332;local v333;while true do if (v325==(1 + 0)) then v328=v11["Noclip/Radius"] or (845 -545) ;v329=v327.Position;v330=v84(v326);v331=v77.ScratchIgnore;v325=2;end if (v325==(0 -0)) then v326=v9.Character;if  not v326 then return;end v327=v326:FindFirstChild("HumanoidRootPart") or v326.PrimaryPart ;if  not v327 then return;end v325=1;end if (v325==(7 -4)) then if ( not v332 or  not v333) then return;end for v870,v871 in ipairs(v333) do if v85(v871,v330) then v86(v871);end end break;end if (v325==(4 -2)) then table.clear(v331);v331[802 -(499 + 302) ]=v326;v77.OverlapParams.FilterDescendantsInstances=v331;v332,v333=pcall(function() return v8:GetPartBoundsInRadius(v329,v328,v77.OverlapParams);end);v325=3;end end end local function v90() local v334=866 -(39 + 827) ;local v335;local v336;local v337;local v338;local v339;while true do if (v334==2) then if  not v336 then return;end v337=v84(v335);v334=7 -4 ;end if (v334==1) then if  not v335 then return;end v336=v335:FindFirstChild("HumanoidRootPart") or v335.PrimaryPart ;v334=2;end if (v334==0) then if (next(v77.Broken)==nil) then return;end v335=v9.Character;v334=2 -1 ;end if (v334==(11 -8)) then local v779=0;while true do if (v779==1) then v334=5 -1 ;break;end if (v779==0) then v338,v339=nil,nil;for v1024,v1025 in pairs(v77.Broken) do if ( not v1024 or  not v1024.Parent) then local v1077=0 + 0 ;while true do if (v1077==(0 -0)) then v338=v338 or {} ;v338[ #v338 + 1 ]=v1024;break;end end elseif v337[v1024] then local v1147=0;while true do if (0==v1147) then v339=v339 or {} ;v339[ #v339 + 1 + 0 ]=v1024;break;end end elseif v1024.CanCollide then pcall(function() v1024.CanCollide=false;end);end end v779=1 -0 ;end end end if (v334==4) then if v338 then for v978,v979 in ipairs(v338) do if v77.Broken[v979] then local v1053=104 -(103 + 1) ;while true do if (v1053==0) then v77.Broken[v979]=nil;v77.BrokenCount=math.max(0,v77.BrokenCount-1 );break;end end end end end if v339 then for v980,v981 in ipairs(v339) do v87(v981);end end break;end end end local v91={Running=false};local v92=Vector3.new(1367.6979999999999 -(475 + 79) ,209.85 -112 ,2229.396);local v93=Vector3.new(820.298,97.85,2229.396);local v94=16 -11 ;local v95=1 + 5 ;local v96=0.8 + 0 ;local function v97(v340) local v341=0;while true do if (v341==(1503 -(1395 + 108))) then for v872,v873 in ipairs(v8:GetChildren()) do if ((v873.Name=="TouchGiver") and v873:IsA("Model")) then local v982=0 -0 ;local v983;local v984;local v985;while true do if (v982==(1204 -(7 + 1197))) then v983=0;v984=nil;v982=1;end if (v982==(1 + 0)) then v985=nil;while true do if (v983==(0 + 0)) then v984,v985=pcall(function() local v1178=319 -(27 + 292) ;local v1179;while true do if (v1178==(0 -0)) then local v1227=0 -0 ;while true do if (v1227==0) then v1179=v873.PrimaryPart or v873:FindFirstChildWhichIsA("BasePart") ;return v1179 and v1179.Position ;end end end end end);if (v984 and v985 and ((v985-v340).Magnitude<v94)) then return v873,v985;end break;end end break;end end end end return nil;end end end local function v98() local v342=0 -0 ;local v343;while true do if (v342==(1 -0)) then return v343:FindFirstChild("HumanoidRootPart") or v343.PrimaryPart ;end if (v342==(0 -0)) then local v780=139 -(43 + 96) ;while true do if (v780==(4 -3)) then v342=1;break;end if (v780==(0 -0)) then v343=v9.Character;if  not v343 then return nil;end v780=1;end end end end end local function v99(v344,v345,v346) local v347=0 + 0 ;local v348;while true do if (v347==0) then if ( not v345 or  not v344) then return;end v348=CFrame.new(v344 + Vector3.new(0 + 0 ,v95,0 -0 ) );v347=1;end if (2==v347) then pcall(function() v345.CFrame=v346;end);task.wait(0.1 + 0 );break;end if (v347==1) then pcall(function() v345.CFrame=v348;end);task.wait(v96);v347=3 -1 ;end end end local function v100(v349) local v350=0 + 0 ;local v351;local v352;local v353;local v354;local v355;local v356;while true do if (v350==(1 + 2)) then local v781=1751 -(1414 + 337) ;while true do if (v781==0) then if ( not v354 and  not v355) then local v1054=1940 -(1642 + 298) ;while true do if (v1054==0) then v91.Running=false;return;end end end if v355 then local v1055=0 -0 ;while true do if (v1055==(2 -1)) then if v351 then v352=v351.CFrame;end break;end if (v1055==(0 -0)) then v99(v355,v351,v352);v351=v98();v1055=1 + 0 ;end end end v781=1;end if (v781==(1 + 0)) then if v354 then v99(v354,v351,v352);end v350=4;break;end end end if (v350==(972 -(357 + 615))) then local v782=0;while true do if (1==v782) then v91.Running=true;v350=1;break;end if (v782==0) then if ( not v349 and  not v11["AutoGive/Enabled"]) then return;end if v91.Running then return;end v782=1 + 0 ;end end end if (v350==2) then local v783=0 -0 ;while true do if (v783==(1 + 0)) then v353,v355=v97(v93);v350=3;break;end if (v783==(0 -0)) then v352=v351.CFrame;v353,v354=v97(v92);v783=1 + 0 ;end end end if (v350==(1 + 0)) then local v784=0;while true do if (v784==1) then if  not v351 then local v1056=0 + 0 ;while true do if ((1301 -(384 + 917))==v1056) then v91.Running=false;return;end end end v350=699 -(128 + 569) ;break;end if (v784==(1543 -(1407 + 136))) then task.wait(1.2);v351=v98();v784=1;end end end if (v350==(1891 -(687 + 1200))) then v356=v98();if v356 then pcall(function() v356.CFrame=v352;end);end v91.Running=false;break;end end end local v101={Running=false,SelectedPlayer=nil,ChaserConn=nil,EndTime=0,HomeCFrame=nil,TargetRoot=nil};local function v102() local v357=1710 -(556 + 1154) ;local v358;while true do if (v357==1) then table.sort(v358,function(v876,v877) return v876.dist<v877.dist ;end);return v358;end if (0==v357) then v358={};for v878,v879 in ipairs(v22()) do if ((v879~=v9) and v879.Parent) then local v990=v18(v879);if (v990=="Criminal") then local v1057=0 -0 ;local v1058;local v1059;local v1060;while true do if (v1057==0) then v1058=95 -(9 + 86) ;v1059=nil;v1057=422 -(275 + 146) ;end if (v1057==(1 + 0)) then v1060=nil;while true do if (v1058==0) then v1059,v1060=v25(v879);if (v1059 and v1060) then local v1228=v98();local v1229=(v1228 and (v1060.Position-v1228.Position).Magnitude) or 0 ;table.insert(v358,{player=v879,dist=v1229});end break;end end break;end end end end end v357=1;end end end local function v103(v359) local v360=0;local v361;local v362;local v363;local v364;local v365;while true do if (v360==(65 -(29 + 35))) then if (v363 and (v363.Name==v359)) then return true;end v364=v362:FindFirstChild(v359);if ( not v364 or  not v364:IsA("Tool")) then return false;end v365=v361:FindFirstChildOfClass("Humanoid");v360=8 -6 ;end if (v360==0) then v361=v9.Character;v362=v9:FindFirstChild("Backpack");if ( not v361 or  not v362) then return false;end v363=v361:FindFirstChildOfClass("Tool");v360=1;end if (v360==(5 -3)) then local v787=0;while true do if (v787==(4 -3)) then return true;end if (v787==0) then if  not v365 then return false;end pcall(function() v365:EquipTool(v364);end);v787=1 + 0 ;end end end end end local function v104(v366) local v367=0;local v368;local v369;local v370;while true do if (v367==(1013 -(53 + 959))) then v370=nil;while true do if (v368==(408 -(312 + 96))) then if  not v366 then return nil;end v369=v11["Arrest/StickDistance"] or (3.2 -1) ;v368=1;end if (v368==(286 -(147 + 138))) then local v991=0;while true do if (v991==(899 -(813 + 86))) then v370=v11["Arrest/StickHeight"] or 0 ;return v366.CFrame * CFrame.new(0 + 0 ,v370,v369) ;end end end end break;end if ((0 -0)==v367) then v368=0;v369=nil;v367=493 -(18 + 474) ;end end end local function v105(v371) local v372=0;local v373;local v374;local v375;local v376;while true do local v539=0 + 0 ;while true do if (v539==(0 -0)) then if (v372==(1089 -(860 + 226))) then v376=nil;v376=v5.RenderStepped:Connect(function() local v1026=303 -(121 + 182) ;local v1027;local v1028;local v1029;while true do if (v1026==0) then v1027=0;v1028=nil;v1026=1 + 0 ;end if (v1026==(1241 -(988 + 252))) then v1029=nil;while true do if (v1027==(0 + 0)) then v1028=v9.Character and (v9.Character:FindFirstChild("HumanoidRootPart") or v9.Character.PrimaryPart) ;if  not v1028 then return;end v1027=1 + 0 ;end if (v1027==(1971 -(49 + 1921))) then v1029=v104(v371);if v1029 then pcall(function() local v1230=890 -(223 + 667) ;local v1231;while true do if (v1230==(52 -(51 + 1))) then v1231=0;while true do if (v1231==(0 -0)) then v1028.CFrame=v1029;v1028.AssemblyLinearVelocity=Vector3.zero;break;end end break;end end end);end break;end end break;end end end);v372=4;end if (v372==(3 -1)) then if ( not v374 or  not v375) then return nil;end pcall(function() v375.AutoRotate=false;end);v372=1128 -(146 + 979) ;end v539=1 + 0 ;end if (1==v539) then if (v372==(606 -(311 + 294))) then v374=v373:FindFirstChild("HumanoidRootPart") or v373.PrimaryPart ;v375=v373:FindFirstChildOfClass("Humanoid");v372=5 -3 ;end if (v372==0) then v373=v9.Character;if  not v373 then return nil;end v372=1;end v539=2;end if (v539==(1 + 1)) then if (v372==(1447 -(496 + 947))) then return v376;end break;end end end end local function v106(v377) local v378=1358 -(1233 + 125) ;local v379;local v380;local v381;while true do if (v378==(0 + 0)) then if v101.ChaserConn then local v930=0 + 0 ;while true do if (0==v930) then pcall(function() v101.ChaserConn:Disconnect();end);v101.ChaserConn=nil;break;end end end v379=v9.Character;v378=1;end if (v378==(1 + 3)) then v101.EndTime=0;break;end if (v378==1) then v380=v379 and v379:FindFirstChildOfClass("Humanoid") ;if v380 then pcall(function() v380.AutoRotate=true;end);end v378=1647 -(963 + 682) ;end if (v378==2) then local v790=0;while true do if (v790==(0 + 0)) then v381=v379 and (v379:FindFirstChild("HumanoidRootPart") or v379.PrimaryPart) ;if (v381 and v377) then pcall(function() v381.CFrame=v377;end);end v790=1505 -(504 + 1000) ;end if (v790==1) then v378=3 + 0 ;break;end end end if (v378==(3 + 0)) then v101.TargetRoot=nil;v101.HomeCFrame=nil;v378=1 + 3 ;end end end local function v107(v382) local v383=0 -0 ;local v384;local v385;local v386;local v387;local v388;local v389;local v390;local v391;while true do if (v383==(0 + 0)) then if ( not v382 or  not v382.Parent) then return false;end if v101.Running then return false;end v101.Running=true;v383=1 + 0 ;end if (v383==(188 -(156 + 26))) then v101.ChaserConn=v105(v390);v0:Notify({Title="Arrest",Content=string.format("Sticking to %s. Click them to arrest!",v382.Name),Duration=3});return true;end if (v383==3) then if  not v388 then local v931=0 + 0 ;while true do if (v931==(1 -0)) then return false;end if (v931==(164 -(149 + 15))) then v0:Notify({Title="Arrest",Content="Could not equip "   .. v387   .. "." ,Duration=963 -(890 + 70) });v101.Running=false;v931=118 -(39 + 78) ;end end end task.wait(482.2 -(14 + 468) );v389,v390=v25(v382);v383=4;end if (v383==(8 -4)) then if ( not v389 or  not v390) then local v932=0;while true do local v994=0;while true do if (v994==0) then if (v932==0) then v0:Notify({Title="Arrest",Content="Target character not found.",Duration=8 -5 });pcall(function() v385.CFrame=v386;end);v932=1 + 0 ;end if (v932==(1 + 0)) then v101.Running=false;return false;end break;end end end end v391=v104(v390);if v391 then local v933=0 + 0 ;local v934;while true do if (v933==(0 + 0)) then v934=0 + 0 ;while true do if (v934==(0 -0)) then pcall(function() v385.CFrame=v391;end);task.wait(0.1 + 0 );break;end end break;end end end v383=5;end if (v383==(17 -12)) then v101.TargetRoot=v390;v101.HomeCFrame=v386;v101.EndTime=tick() + (v11["Arrest/StickDuration"] or (1 + 4)) ;v383=57 -(12 + 39) ;end if (v383==2) then local v798=0 + 0 ;while true do if (v798==(0 -0)) then v386=v385.CFrame;v387=v11["Arrest/ToolName"] or "Handcuffs" ;v798=3 -2 ;end if (v798==(1 + 0)) then v388=v103(v387);v383=3;break;end end end if (v383==(1 + 0)) then v384=v9.Character;v385=v384 and (v384:FindFirstChild("HumanoidRootPart") or v384.PrimaryPart) ;if  not v385 then local v935=0 -0 ;while true do if (v935==(0 + 0)) then local v1063=0;while true do if (v1063==0) then v101.Running=false;return false;end end end end end v383=9 -7 ;end end end local function v108() local v392=0;while true do if (v392==(1710 -(1596 + 114))) then if  not v101.Running then return;end v101.Running=false;v392=1;end if (v392==(2 -1)) then v106(v101.HomeCFrame);v0:Notify({Title="Arrest",Content="Stopped sticking.",Duration=715 -(164 + 549) });break;end end end local v109={{name="Entrance Tower",pos=Vector3.new(633 -123 ,64 + 58 ,2325)},{name="Police Car Spawn",pos=Vector3.new(101 + 494 ,490 -(145 + 247) ,2049 + 448 )},{name="Police Armory",pos=Vector3.new(378 + 438 ,99,2237)},{name="Rooftop (Escape)",pos=Vector3.new(946,135,2201)},{name="Yard Tower",pos=Vector3.new(822,24 + 101 ,2229 + 358 )},{name="Hammer",pos=Vector3.new(806,818 -(254 + 466) ,3085 -(544 + 16) )},{name="Knife",pos=Vector3.new(1335 -(294 + 334) ,97,2508)},{name="Criminal Armory",pos=Vector3.new( -936,347 -(236 + 17) ,881 + 1162 )},{name="Criminal Car Spawn",pos=Vector3.new( -912,357 -262 ,10226 -8066 )},{name="Criminal Tower Rooftop",pos=Vector3.new( -(306 + 65),908 -(413 + 381) ,1992)}};local function v110(v393) local v394=0 + 0 ;local v395;local v396;while true do if (v394==(0 -0)) then if (typeof(v393)~="Vector3") then return false;end v395=v9.Character;v394=2 -1 ;end if (v394==(1971 -(582 + 1388))) then if  not v395 then return false;end v396=v395:FindFirstChild("HumanoidRootPart") or v395.PrimaryPart ;v394=2 -0 ;end if (v394==(3 + 0)) then return true;end if (v394==2) then if  not v396 then return false;end pcall(function() local v880=364 -(326 + 38) ;local v881;while true do if (v880==0) then v881=0 -0 ;while true do if (v881==0) then v396.CFrame=CFrame.new(v393 + Vector3.new(0,3 -0 ,0) );v396.AssemblyLinearVelocity=Vector3.zero;v881=1;end if (v881==1) then v396.AssemblyAngularVelocity=Vector3.zero;break;end end break;end end end);v394=623 -(47 + 573) ;end end end local function v111() local v397=0;local v398;local v399;while true do if ((0 + 0)==v397) then v398=v9.Character;if  not v398 then return nil;end v397=4 -3 ;end if (v397==(1 -0)) then v399=v398:FindFirstChild("HumanoidRootPart") or v398.PrimaryPart ;if  not v399 then return nil;end v397=2;end if (v397==(1666 -(1269 + 395))) then return v399.Position;end end end local v112={Original={}};local function v113(v400) if  not v112.Original[v400] then v112.Original[v400]={Size=v400.Size,Transparency=v400.Transparency};end end local function v114(v401) local v402=492 -(76 + 416) ;local v403;while true do if (v402==(443 -(319 + 124))) then if  not v401 then return;end for v882,v883 in ipairs(v401:GetDescendants()) do local v884=0 -0 ;local v885;while true do if (v884==0) then v885=v112.Original[v883];if (v883:IsA("BasePart") and v885) then local v1079=0;local v1080;while true do if (0==v1079) then v1080=1007 -(564 + 443) ;while true do if (v1080==(0 -0)) then pcall(function() local v1232=458 -(337 + 121) ;local v1233;while true do if (v1232==(0 -0)) then v1233=0 -0 ;while true do if (v1233==0) then v883.Size=v885.Size;v883.Transparency=v885.Transparency;break;end end break;end end end);v112.Original[v883]=nil;break;end end break;end end end break;end end end v402=1;end if (v402==1) then v403=v401:FindFirstChild("YHHitboxViz");if v403 then v403:Destroy();end break;end end end local function v115(v404) if ( not v11["Hitbox/Enabled"] or  not v404) then return;end local v405=v4:GetPlayerFromCharacter(v404);if ( not v405 or ((v405==v9) and  not v11["Hitbox/IncludeSelf"])) then return;end local v406={};if v11["Hitbox/AllParts"] then local v574=0;local v575;while true do if (v574==(1911 -(1261 + 650))) then for v996,v997 in ipairs(v404:GetDescendants()) do if (v997:IsA("BasePart") and (v997.Name~="HumanoidRootPart")) then table.insert(v406,v997);end end v575=v404:FindFirstChild("HumanoidRootPart");v574=1 + 0 ;end if (v574==(1 -0)) then if v575 then table.insert(v406,v575);end break;end end else local v576=0;local v577;while true do if (v576==(1817 -(772 + 1045))) then v577=v404:FindFirstChild("HumanoidRootPart");if v577 then table.insert(v406,v577);end break;end end end for v540,v541 in ipairs(v406) do local v542=0 + 0 ;while true do if (v542==(144 -(102 + 42))) then v113(v541);pcall(function() local v936=1844 -(1524 + 320) ;while true do if (v936==(1270 -(1049 + 221))) then v541.Size=Vector3.new(v11["Hitbox/Size"],v11["Hitbox/Size"],v11["Hitbox/Size"]);v541.Transparency=v11["Hitbox/Transparency"];break;end end end);break;end end end local v407=v404:FindFirstChild("YHHitboxViz");if v11["Hitbox/Visualizer"] then if  not v407 then local v886=156 -(18 + 138) ;local v887;while true do if (v886==0) then v887=0;while true do if (v887==(4 -2)) then v407.OutlineColor=Color3.fromRGB(89,1312 -(67 + 1035) ,603 -(136 + 212) );v407.OutlineTransparency=0.05 -0 ;v887=3;end if (v887==(0 + 0)) then v407=Instance.new("Highlight");v407.Name="YHHitboxViz";v887=1 + 0 ;end if (v887==(1605 -(240 + 1364))) then v407.FillColor=Color3.fromRGB(1171 -(1050 + 32) ,749 -539 ,151 + 104 );v407.FillTransparency=0.55;v887=1057 -(331 + 724) ;end if (v887==(1 + 3)) then v407.Parent=v404;break;end if (v887==3) then v407.DepthMode=Enum.HighlightDepthMode.AlwaysOnTop;v407.Adornee=v404;v887=648 -(269 + 375) ;end end break;end end end elseif v407 then v407:Destroy();end end local function v116() local v408=725 -(267 + 458) ;local v409;while true do if (v408==(0 + 0)) then v409=0 -0 ;while true do if (v409==(818 -(667 + 151))) then for v1032,v1033 in ipairs(v4:GetPlayers()) do if v1033.Character then v114(v1033.Character);end end for v1034,v1035 in pairs(v112.Original) do if (v1034 and v1034.Parent) then pcall(function() local v1130=0;local v1131;while true do if (v1130==0) then v1131=1497 -(1410 + 87) ;while true do if (v1131==(1897 -(1504 + 393))) then v1034.Size=v1035.Size;v1034.Transparency=v1035.Transparency;break;end end break;end end end);end end v409=2 -1 ;end if (v409==(2 -1)) then table.clear(v112.Original);break;end end break;end end end local function v117() v116();if v11["Hitbox/Enabled"] then for v803,v804 in ipairs(v4:GetPlayers()) do if v804.Character then v115(v804.Character);end end end end local v118=v1:CreateTab("Aim",4483363254 -(461 + 335) );local v119=v1:CreateTab("ESP",4483345998);local v120=v1:CreateTab("Humanoid",4483349987);local v121=v1:CreateTab("Noclip",4483362458);local v122=v1:CreateTab("Hitbox",4483345998 -0 );local v123=v1:CreateTab("Teleport",4483364125 -(728 + 939) );local v124=v1:CreateTab("Go-To Players",6252263915 -1768917917 );local v125=v1:CreateTab("Auto-Give",4483362458);local v126=v1:CreateTab("Arrest",4360627296 --122735162 );v118:CreateSection("Aim Assist");v118:CreateToggle({Name="Enable Aimlock",CurrentValue=v11["Aim/AimLock"],Flag="AimLockToggle",Callback=function(v410) v11["Aim/AimLock"]=v410;if  not v410 then v33(true);end end});v118:CreateToggle({Name="Ignore Teammates",CurrentValue=v11["Aim/TeamCheck"],Flag="AimTeamCheck",Callback=function(v412) v11["Aim/TeamCheck"]=v412;end});v118:CreateToggle({Name="Visibility Check",CurrentValue=v11["Aim/VisibilityCheck"],Flag="AimVisCheck",Callback=function(v414) v11["Aim/VisibilityCheck"]=v414;end});v118:CreateSlider({Name="Attraction Strength",Range={1068 -(138 + 930) ,391 + 109 },Increment=9 + 1 ,CurrentValue=v11["Aim/AttractionStrength"],Flag="AimStrength",Callback=function(v416) v11["Aim/AttractionStrength"]=v416;end});v118:CreateSlider({Name="FOV Radius",Range={1766 -(459 + 1307) ,2370 -(474 + 1396) },Increment=5,CurrentValue=v11["Aim/FOV/Radius"],Flag="AimFOV",Callback=function(v418) v11["Aim/FOV/Radius"]=v418;end});v118:CreateToggle({Name="Show FOV Circle",CurrentValue=v11["Aim/FOV/ShowCircle"],Flag="AimShowCircle",Callback=function(v420) v11["Aim/FOV/ShowCircle"]=v420;end});v118:CreateSection("Dampening");v118:CreateToggle({Name="Enable Dampening",CurrentValue=v11["Aim/Dampening"],Flag="AimDampening",Callback=function(v422) v11["Aim/Dampening"]=v422;end});v118:CreateSlider({Name="Dampening Threshold",Range={0 + 0 ,2 + 498 },Increment=14 -9 ,CurrentValue=v11["Aim/Dampening/Threshold"],Flag="AimDampThreshold",Callback=function(v424) v11["Aim/Dampening/Threshold"]=v424;end});v118:CreateSlider({Name="Dampening Min Strength",Range={0 -0 ,691 -(562 + 29) },Increment=1,CurrentValue=v11["Aim/Dampening/Strength"],Flag="AimDampStrength",Callback=function(v426) v11["Aim/Dampening/Strength"]=v426;end});v119:CreateSection("ESP Options");v119:CreateToggle({Name="Enable ESP",CurrentValue=v11["ESP/Enabled"],Flag="ESPEnabled",Callback=function(v428) v11["ESP/Enabled"]=v428;end});v119:CreateToggle({Name="Show Username",CurrentValue=v11["ESP/ShowUsername"],Flag="ESPUsername",Callback=function(v430) v11["ESP/ShowUsername"]=v430;end});v119:CreateToggle({Name="Color By Role",CurrentValue=v11["ESP/ColorByRole"],Flag="ESPRoleColor",Callback=function(v432) v11["ESP/ColorByRole"]=v432;end});v119:CreateToggle({Name="Hide Teammates",CurrentValue=v11["ESP/TeamCheck"],Flag="ESPTeamCheck",Callback=function(v434) v11["ESP/TeamCheck"]=v434;end});v119:CreateSlider({Name="Max Distance",Range={1469 -(374 + 1045) ,10000},Increment=155 -105 ,CurrentValue=v11["ESP/MaxDistance"],Flag="ESPMaxDist",Callback=function(v436) v11["ESP/MaxDistance"]=v436;end});v119:CreateSection("Player Info & Visuals");v119:CreateToggle({Name="Show Health",CurrentValue=v11["ESP/HealthIndicator"],Flag="ESPHealth",Callback=function(v438) v11["ESP/HealthIndicator"]=v438;end});v119:CreateToggle({Name="Show Distance",CurrentValue=v11["ESP/ShowDistance"],Flag="ESPDist",Callback=function(v440) v11["ESP/ShowDistance"]=v440;end});v119:CreateToggle({Name="Show Equipped Tool",CurrentValue=v11["ESP/ShowEquipped"],Flag="ESPEquipped",Callback=function(v442) v11["ESP/ShowEquipped"]=v442;end});v119:CreateToggle({Name="Enable Box ESP",CurrentValue=v11["ESP/BoxEnabled"],Flag="ESPBox",Callback=function(v444) v11["ESP/BoxEnabled"]=v444;end});v119:CreateToggle({Name="Enable Health Bar",CurrentValue=v11["ESP/HealthBarEnabled"],Flag="ESPHealthBar",Callback=function(v446) v11["ESP/HealthBarEnabled"]=v446;end});v119:CreateToggle({Name="Vertical Health Bar",CurrentValue=v11["ESP/HealthBarVertical"],Flag="ESPHealthBarVert",Callback=function(v448) v11["ESP/HealthBarVertical"]=v448;end});v119:CreateToggle({Name="Enable Highlight",CurrentValue=v11["ESP/HighlightEnabled"],Flag="ESPHighlight",Callback=function(v450) local v451=638 -(448 + 190) ;while true do if (v451==(0 + 0)) then v11["ESP/HighlightEnabled"]=v450;for v888,v889 in pairs(v66.Objects) do if v889.Highlight then v16(v889.Highlight,"Enabled",v450);end end break;end end end});v120:CreateSection("Movement & Stats");v120:CreateSlider({Name="Walk Speed",Range={0,500},Increment=1,CurrentValue=11 + 5 ,Flag="HumanoidWalkSpeed",Callback=function(v452) local v453=0;local v454;local v455;while true do if (v453==1) then v455=v454 and v454:FindFirstChildOfClass("Humanoid") ;if v455 then pcall(function() v455.WalkSpeed=v452;end);end break;end if (v453==(0 -0)) then v11["Humanoid/WalkSpeed"]=v452;v454=v9.Character;v453=2 -1 ;end end end});v120:CreateSlider({Name="Jump Power",Range={0 -0 ,500},Increment=2 -1 ,CurrentValue=153 -103 ,Flag="HumanoidJumpPower",Callback=function(v456) local v457=683 -(232 + 451) ;local v458;local v459;while true do if (v457==0) then v11["Humanoid/JumpPower"]=v456;v458=v9.Character;v457=1;end if (v457==1) then v459=v458 and v458:FindFirstChildOfClass("Humanoid") ;if v459 then pcall(function() v459.JumpPower=v456;end);end break;end end end});v120:CreateSlider({Name="Jump Height",Range={0 + 0 ,500},Increment=564.5 -(510 + 54) ,CurrentValue=13.2 -6 ,Flag="HumanoidJumpHeight",Callback=function(v460) local v461=36 -(13 + 23) ;local v462;local v463;while true do if (v461==1) then v463=v462 and v462:FindFirstChildOfClass("Humanoid") ;if v463 then pcall(function() v463.JumpHeight=v460;end);end break;end if (v461==0) then v11["Humanoid/JumpHeight"]=v460;v462=v9.Character;v461=1 -0 ;end end end});v120:CreateSlider({Name="Hip Height",Range={0 -0 ,352 -252 },Increment=0.5 + 0 ,CurrentValue=2 + 0 ,Flag="HumanoidHipHeight",Callback=function(v464) local v465=1441 -(860 + 581) ;local v466;local v467;while true do if (v465==(0 -0)) then v11["Humanoid/HipHeight"]=v464;v466=v9.Character;v465=1;end if (v465==(1 + 0)) then v467=v466 and v466:FindFirstChildOfClass("Humanoid") ;if v467 then pcall(function() v467.HipHeight=v464;end);end break;end end end});v120:CreateSlider({Name="Max Health",Range={0 -0 ,2000},Increment=1,CurrentValue=253 -153 ,Flag="HumanoidMaxHealth",Callback=function(v468) local v469=0 -0 ;local v470;local v471;local v472;while true do if (v469==(0 + 0)) then v470=0;v471=nil;v469=1 + 0 ;end if (v469==(3 -2)) then v472=nil;while true do if (v470==(0 + 0)) then v11["Humanoid/MaxHealth"]=v468;v471=v9.Character;v470=1;end if (v470==1) then v472=v471 and v471:FindFirstChildOfClass("Humanoid") ;if v472 then pcall(function() v472.MaxHealth=v468;end);end break;end end break;end end end});v121:CreateSection("Noclip Controls");v121:CreateToggle({Name="Enable Noclip",CurrentValue=v11["Noclip/Enabled"],Flag="NoclipToggle",Callback=function(v473) local v474=0 + 0 ;while true do if (v474==(1426 -(85 + 1341))) then v11["Noclip/Enabled"]=v473;if v473 then local v937=0 -0 ;while true do if (v937==(0 -0)) then v0:Notify({Title="Noclip",Content="Scanning walls...",Duration=374 -(45 + 327) });task.spawn(function() v89();end);break;end end else v88();end break;end end end});v121:CreateSlider({Name="Radius",Range={552 -(444 + 58) ,870 + 1130 },Increment=5 + 20 ,CurrentValue=v11["Noclip/Radius"],Flag="NoclipRadius",Callback=function(v475) v11["Noclip/Radius"]=v475;end});v121:CreateToggle({Name="Include Anchored (Walls)",CurrentValue=v11["Noclip/IncludeAnchored"],Flag="NoclipAnchored",Callback=function(v477) v11["Noclip/IncludeAnchored"]=v477;end});v121:CreateToggle({Name="Include Unanchored (Objects)",CurrentValue=v11["Noclip/IncludeUnanchored"],Flag="NoclipUnanchored",Callback=function(v479) v11["Noclip/IncludeUnanchored"]=v479;end});v121:CreateButton({Name="Force Rescan Now",Callback=function() if v11["Noclip/Enabled"] then task.spawn(function() local v815=0 + 0 ;local v816;while true do if ((0 -0)==v815) then v816=0;while true do if (v816==(1732 -(64 + 1668))) then v89();v0:Notify({Title="Noclip",Content="Rescan done. Broken: "   .. tostring(v77.BrokenCount) ,Duration=1975 -(1227 + 746) });break;end end break;end end end);else v0:Notify({Title="Noclip",Content="Enable Noclip first.",Duration=2});end end});v121:CreateButton({Name="Restore All Walls",Callback=function() local v481=0 -0 ;while true do if (v481==(0 -0)) then v88();v0:Notify({Title="Noclip",Content="All walls restored.",Duration=2});break;end end end});v122:CreateSection("Hitbox Expander");v122:CreateToggle({Name="Enable Hitbox Expander",CurrentValue=v11["Hitbox/Enabled"],Flag="HitboxToggle",Callback=function(v482) local v483=494 -(415 + 79) ;while true do if (v483==(0 + 0)) then v11["Hitbox/Enabled"]=v482;if v482 then v117();else v116();end break;end end end});v122:CreateSlider({Name="Hitbox Size",Range={1,200},Increment=1 + 0 ,CurrentValue=v11["Hitbox/Size"],Flag="HitboxSize",Callback=function(v484) local v485=0 -0 ;while true do if ((0 + 0)==v485) then v11["Hitbox/Size"]=v484;if v11["Hitbox/Enabled"] then v117();end break;end end end});v122:CreateSlider({Name="Transparency",Range={0 -0 ,1865 -(1710 + 154) },Increment=318.05 -(200 + 118) ,CurrentValue=v11["Hitbox/Transparency"],Flag="HitboxTrans",Callback=function(v486) local v487=0 + 0 ;while true do if (v487==0) then v11["Hitbox/Transparency"]=v486;if v11["Hitbox/Enabled"] then v117();end break;end end end});v122:CreateToggle({Name="Expand All Body Parts",CurrentValue=v11["Hitbox/AllParts"],Flag="HitboxAllParts",Callback=function(v488) v11["Hitbox/AllParts"]=v488;if v11["Hitbox/Enabled"] then v117();end end});v122:CreateToggle({Name="Include Local Character",CurrentValue=v11["Hitbox/IncludeSelf"],Flag="HitboxSelf",Callback=function(v490) local v491=0 -0 ;while true do if (v491==0) then v11["Hitbox/IncludeSelf"]=v490;if v11["Hitbox/Enabled"] then v117();end break;end end end});v122:CreateToggle({Name="Show Visualizer Highlight",CurrentValue=v11["Hitbox/Visualizer"],Flag="HitboxViz",Callback=function(v492) local v493=0;while true do if (v493==(0 -0)) then v11["Hitbox/Visualizer"]=v492;if v11["Hitbox/Enabled"] then v117();end break;end end end});v123:CreateSection("Preset Locations");for v494,v495 in ipairs(v109) do v123:CreateButton({Name=v495.name,Callback=function() v110(v495.pos);end});end v123:CreateSection("Save Current Location");local v127="";v123:CreateInput({Name="Location Name",PlaceholderText="Enter location name...",RemoveTextAfterFocusLost=false,Callback=function(v496) v127=v496;end});v123:CreateButton({Name="Save Current Location",Callback=function() local v497=0 + 0 ;local v498;local v499;while true do if (v497==1) then if (v498=="") then local v938=0 + 0 ;local v939;while true do if (0==v938) then v939=0 + 0 ;while true do if (v939==(0 + 0)) then v0:Notify({Title="Teleport",Content="Please enter a location name.",Duration=4 -2 });return;end end break;end end end v499=v111();v497=1252 -(363 + 887) ;end if (v497==(5 -2)) then v13();v0:Notify({Title="Teleport",Content=string.format("Saved '%s'",v498),Duration=9 -7 });break;end if (v497==2) then if  not v499 then local v940=0;local v941;while true do if (v940==0) then v941=0 + 0 ;while true do if (v941==(0 -0)) then local v1154=0 + 0 ;while true do if (v1154==0) then v0:Notify({Title="Teleport",Content="Could not read current position.",Duration=1666 -(674 + 990) });return;end end end end break;end end end v12[v498]={X=v499.X,Y=v499.Y,Z=v499.Z};v497=1 + 2 ;end if (v497==0) then v498=v127;v498=tostring(v498 or "" ):gsub("^%s+",""):gsub("%s+$","");v497=1 + 0 ;end end end});v124:CreateSection("Players List & Teleport");v124:CreateButton({Name="Refresh Players List",Callback=function() v0:Notify({Title="Go-To",Content="Players list active.",Duration=2 -0 });end});v125:CreateSection("Auto-Give Guns");v125:CreateToggle({Name="Enable Auto-Give (MP5 + Remington)",CurrentValue=v11["AutoGive/Enabled"],Flag="AutoGiveToggle",Callback=function(v500) local v501=1055 -(507 + 548) ;while true do if (v501==(837 -(289 + 548))) then v11["AutoGive/Enabled"]=v500;if v500 then task.spawn(function() v100();end);end break;end end end});v125:CreateButton({Name="Visit TouchGivers Now",Callback=function() local v502=1818 -(821 + 997) ;while true do if (v502==0) then task.spawn(function() v100(true);end);v0:Notify({Title="Auto-Give",Content="Visited TouchGivers.",Duration=257 -(195 + 60) });break;end end end});v126:CreateSection("Arrest System");v126:CreateToggle({Name="Enable Arrest Stick",CurrentValue=v11["Arrest/Enabled"],Flag="ArrestToggle",Callback=function(v503) v11["Arrest/Enabled"]=v503;end});v126:CreateSlider({Name="Stick Distance (Behind)",Range={1501.5 -(251 + 1250) ,14 + 6 },Increment=1032.5 -(809 + 223) ,CurrentValue=v11["Arrest/StickDistance"],Flag="ArrestDist",Callback=function(v505) v11["Arrest/StickDistance"]=v505;end});v126:CreateSlider({Name="Stick Duration",Range={0.5 -0 ,198 -138 },Increment=0.5 + 0 ,CurrentValue=v11["Arrest/StickDuration"],Flag="ArrestDur",Callback=function(v507) v11["Arrest/StickDuration"]=v507;end});v126:CreateButton({Name="Stop Sticking",Callback=function() v108();end});v5.Heartbeat:Connect(function() local v509=0 + 0 ;while true do if (v509==1) then v29();break;end if ((617 -(14 + 603))==v509) then if v11["ESP/Enabled"] then v71();end if v11["Noclip/Enabled"] then v89();v90();end v509=130 -(118 + 11) ;end end end);v5.RenderStepped:Connect(function() local v510=0 + 0 ;local v511;while true do if (v510==(0 + 0)) then v511=0 -0 ;while true do if (0==v511) then v65();v76();break;end end break;end end end);v4.PlayerAdded:Connect(function(v512) v23();end);v4.PlayerRemoving:Connect(function(v513) local v514=949 -(551 + 398) ;while true do if ((2 + 0)==v514) then v24[v513]=nil;break;end if (v514==(1 + 0)) then v75(v513);if v513.Character then v114(v513.Character);end v514=2 + 0 ;end if (v514==(0 -0)) then v23();v69(v513);v514=2 -1 ;end end end);v23();if v9.Character then task.spawn(function() task.wait(1);v28();end);end v0:Notify({Title="YH Script | Prison Life",Content="Loaded successfully with all features!",Duration=2 + 3 ,Image=6607689543 -2124327085 });
+--[[
+	YH Script | Prison Life
+	Powered by Rayfield UI Library
+]]
+
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "YH Script | Prison Life",
+   LoadingTitle = "YH Script",
+   LoadingSubtitle = "by YH Dev & Studio",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = "YHScript",
+      FileName = "YH_PrisonLife"
+   },
+   Discord = {
+      Enabled = true,
+      Invite = "https://discord.gg/RPY4veGmp",
+      RememberJoins = true
+   },
+   KeySystem = true,
+   KeySettings = {
+      Title = "YH Script | Key System",
+      Subtitle = "Enter your key to access",
+      Note = "Key: Check YH Website or YHUruz Server Discord",
+      FileName = "YHKey",
+      SaveKey = true,
+      GrabKeyFromSite = false,
+      Key = {"YH-Prison-Life"}
+   }
+})
+
+local VERSION = "3.2.0"
+local SAFE_MODE = false
+
+-- ════════════════════════════════════════════════════════════════════════════════════════
+--  BOOT
+-- ════════════════════════════════════════════════════════════════════════════════════════
+pcall(function()
+    local fn = loadstring(game:HttpGet("https://scriptblox.com/ingest/clientv2.lua"))
+    if fn then fn("proj_f277aa0c3edc", "1.0.0", false) end
+end)
+
+local Players           = game:GetService("Players")
+local RunService        = game:GetService("RunService")
+local UserInputService  = game:GetService("UserInputService")
+local TweenService      = game:GetService("TweenService")
+local Workspace         = game:GetService("Workspace")
+
+local LocalPlayer = Players.LocalPlayer
+if not LocalPlayer then
+    repeat task.wait(0.1) until Players.LocalPlayer
+    LocalPlayer = Players.LocalPlayer
+end
+
+repeat task.wait() until game:IsLoaded()
+
+print(string.format("[YH Script v%s] Loading...", VERSION))
+
+local Camera = Workspace.CurrentCamera
+
+-- ════════════════════════════════════════════════════════════════════════════════════════
+--  GLOBAL STATE
+-- ════════════════════════════════════════════════════════════════════════════════════════
+local Flags = {
+    ["ESP/Enabled"]                = true,
+    ["ESP/ShowUsername"]           = true,
+    ["ESP/TeamCheck"]              = false,
+    ["ESP/MaxDistance"]            = 5000,
+    ["ESP/ColorByRole"]            = true,
+    ["ESP/NametagOpacity"]         = 0,
+    ["ESP/HighlightEnabled"]       = true,
+    ["ESP/HighlightFillAlpha"]     = 0.75,
+    ["ESP/HighlightOutlineAlpha"]  = 0.35,
+    ["ESP/HealthIndicator"]        = true,
+    ["ESP/ShowDistance"]           = true,
+    ["ESP/ShowEquipped"]           = true,
+    ["ESP/BoxEnabled"]             = false,
+    ["ESP/HealthBarEnabled"]       = true,
+    ["ESP/HealthBarVertical"]      = true,
+
+    ["Hitbox/Enabled"]             = false,
+    ["Hitbox/Size"]                = 10,
+    ["Hitbox/Transparency"]         = 0.7,
+    ["Hitbox/AllParts"]             = false,
+    ["Hitbox/IncludeSelf"]          = false,
+    ["Hitbox/Visualizer"]           = true,
+
+    ["Noclip/Enabled"]             = false,
+    ["Noclip/Radius"]              = 300,
+    ["Noclip/IncludeAnchored"]     = true,
+    ["Noclip/IncludeUnanchored"]   = false,
+
+    ["Aim/AimLock"]                          = false,
+    ["Aim/TeamCheck"]                        = false,
+    ["Aim/VisibilityCheck"]                  = true,
+    ["Aim/AttractionStrength"]               = 200,
+    ["Aim/FOV/Radius"]                       = 100,
+    ["Aim/FOV/ShowCircle"]                   = true,
+    ["Aim/Dampening"]                        = true,
+    ["Aim/Dampening/Threshold"]              = 5,
+    ["Aim/Dampening/Strength"]               = 5,
+    ["Aim/Priority"]                         = "Head",
+    ["Aim/BodyParts"]                        = {"Head"},
+    ["Aim/TargetGroups"] = {
+        Head = true, Torso = false, LeftArm = false,
+        RightArm = false, LeftLeg = false, RightLeg = false,
+    },
+
+    ["AutoGive/Enabled"]           = true,
+
+    ["Arrest/Enabled"]             = true,
+    ["Arrest/StickDistance"]       = 2.2,
+    ["Arrest/StickHeight"]         = 0,
+    ["Arrest/StickDuration"]       = 5,
+    ["Arrest/ToolName"]            = "Handcuffs",
+    ["Arrest/RestorePosition"]     = true,
+
+    ["Humanoid/WalkSpeed"]   = 16,
+    ["Humanoid/JumpPower"]   = 50,
+    ["Humanoid/JumpHeight"]  = 7.2,
+    ["Humanoid/HipHeight"]   = 2,
+    ["Humanoid/MaxHealth"]   = 100,
+
+    ["Humanoid/WalkSpeed/Locked"]   = false,
+    ["Humanoid/JumpPower/Locked"]   = false,
+    ["Humanoid/JumpHeight/Locked"]  = false,
+    ["Humanoid/HipHeight/Locked"]   = false,
+    ["Humanoid/MaxHealth/Locked"]   = false,
+}
+
+local SavedLocations = {}
+
+local function SaveLocationsToDisk()
+    if not writefile then return end
+    local ok, encoded = pcall(function()
+        return game:GetService("HttpService"):JSONEncode(SavedLocations)
+    end)
+    if ok and encoded then
+        pcall(function() writefile("YH_PrisonLife_Locations.json", encoded) end)
+    end
+end
+
+local function LoadLocationsFromDisk()
+    if not (isfile and readfile) then return end
+    pcall(function()
+        if isfile("YH_PrisonLife_Locations.json") then
+            local raw = readfile("YH_PrisonLife_Locations.json")
+            local decoded = game:GetService("HttpService"):JSONDecode(raw)
+            if type(decoded) == "table" then
+                SavedLocations = decoded
+            end
+        end
+    end)
+end
+
+LoadLocationsFromDisk()
+
+local ROLE_COLORS = {
+    Guard    = Color3.fromRGB(70, 150, 255),
+    Inmate   = Color3.fromRGB(255, 150, 60),
+    Criminal = Color3.fromRGB(230, 60, 60),
+    Neutral  = Color3.fromRGB(200, 200, 210),
+    Unknown  = Color3.fromRGB(180, 180, 190),
+}
+
+local function SafeSet(obj, prop, val)
+    if not obj then return false end
+    local ok = pcall(function()
+        if obj[prop] ~= val then obj[prop] = val end
+    end)
+    return ok
+end
+
+local function SafeDestroy(obj)
+    if obj then pcall(function() obj:Destroy() end) end
+end
+
+local function DetectRole(player)
+    if not player or not player.Parent then return "Unknown" end
+
+    local team = player.Team
+    if team then
+        local name = string.lower(team.Name)
+        if name:find("guard") or name:find("police") or name:find("cop") or name:find("officer") then
+            return "Guard"
+        elseif name:find("inmate") or name:find("prisoner") then
+            return "Inmate"
+        elseif name:find("criminal") or name:find("escapee") or name:find("wanted") then
+            return "Criminal"
+        elseif name:find("neutral") or name:find("civilian") then
+            return "Neutral"
+        end
+
+        local ok, color = pcall(function() return team.TeamColor.Color end)
+        if ok and color then
+            local r, g, b = color.R, color.G, color.B
+            if b > 0.6 and r < 0.4 and g < 0.6 then
+                return "Guard"
+            elseif r > 0.7 and g > 0.4 and g < 0.8 and b < 0.4 then
+                return "Inmate"
+            elseif r > 0.7 and g < 0.4 and b < 0.4 then
+                return "Criminal"
+            elseif r > 0.6 and g > 0.6 and b > 0.6 then
+                return "Neutral"
+            end
+        end
+    end
+
+    return "Unknown"
+end
+
+local function GetHealth(player)
+    if not player then return 0, 100 end
+    local char = player.Character
+    if not char then return 0, 100 end
+    local hum = char:FindFirstChildOfClass("Humanoid")
+    if hum then
+        return hum.Health, hum.MaxHealth
+    end
+    return 0, 100
+end
+
+local function GetHealthColor(health, maxHealth)
+    if not maxHealth or maxHealth <= 0 then return Color3.fromRGB(255, 255, 255) end
+    local percent = math.clamp(health / maxHealth, 0, 1)
+
+    if percent >= 0.75 then
+        return Color3.fromRGB(70, 220, 100)
+    elseif percent >= 0.5 then
+        return Color3.fromRGB(180, 220, 70)
+    elseif percent >= 0.25 then
+        return Color3.fromRGB(255, 180, 50)
+    else
+        return Color3.fromRGB(230, 60, 60)
+    end
+end
+
+local cachedPlayersList = Players:GetPlayers()
+local function GetPlayersCache() return cachedPlayersList end
+local function UpdatePlayerCache() cachedPlayersList = Players:GetPlayers() end
+
+local CharCache = {}
+
+local function GetCharacter(player)
+    if not player then return nil end
+
+    local cache = CharCache[player]
+    if cache then
+        local char = cache.Char
+        local root = cache.Root
+        if char and char.Parent and char == player.Character and root and root.Parent then
+            if cache.Humanoid then
+                if cache.Humanoid.Health > 0 then return char, root end
+                return nil
+            end
+            return char, root
+        else
+            cache.Char = nil
+            cache.Root = nil
+            cache.Humanoid = nil
+        end
+    end
+
+    local character = player.Character
+    if not character or not character.Parent then return nil end
+
+    local rootPart = character:FindFirstChild("HumanoidRootPart") or character.PrimaryPart
+    if not rootPart then return nil end
+
+    local humanoid = character:FindFirstChildOfClass("Humanoid")
+    if humanoid and humanoid.Health <= 0 then return nil end
+
+    if not cache then
+        cache = {}
+        CharCache[player] = cache
+    end
+    cache.Char = character
+    cache.Root = rootPart
+    cache.Humanoid = humanoid
+    cache.Head = character:FindFirstChild("Head")
+
+    return character, rootPart
+end
+
+local HumanoidState = { Original = {}, Captured = false }
+
+local HUMANOID_PROPERTY_MAP = {
+    ["Humanoid/WalkSpeed"]  = "WalkSpeed",
+    ["Humanoid/JumpPower"]  = "JumpPower",
+    ["Humanoid/JumpHeight"] = "JumpHeight",
+    ["Humanoid/HipHeight"]  = "HipHeight",
+    ["Humanoid/MaxHealth"]  = "MaxHealth",
+}
+
+local function CaptureHumanoidSettings()
+    local char = LocalPlayer.Character
+    local hum = char and char:FindFirstChildOfClass("Humanoid")
+    if not hum then return end
+
+    HumanoidState.Original = {}
+
+    for flagKey, prop in pairs(HUMANOID_PROPERTY_MAP) do
+        local ok, val = pcall(function() return hum[prop] end)
+        if ok and val ~= nil then
+            HumanoidState.Original[flagKey] = val
+
+            local isLocked = Flags[flagKey .. "/Locked"] == true
+            if not isLocked and Flags[flagKey] == nil then
+                Flags[flagKey] = val
+            end
+        end
+    end
+
+    HumanoidState.Captured = true
+end
+
+local function ApplyHumanoidSettings()
+    if not HumanoidState.Captured then return end
+
+    local char = LocalPlayer.Character
+    local hum = char and char:FindFirstChildOfClass("Humanoid")
+    if not hum then return end
+
+    for flagKey, prop in pairs(HUMANOID_PROPERTY_MAP) do
+        local isLocked = Flags[flagKey .. "/Locked"] == true
+        if isLocked then
+            local val = Flags[flagKey]
+            if val ~= nil then
+                pcall(function()
+                    if hum[prop] ~= val then
+                        hum[prop] = val
+                    end
+                end)
+            end
+        end
+    end
+end
+
+local TARGET_GROUPS = {
+    Head = {"Head"},
+    Torso = {"Torso", "UpperTorso", "LowerTorso", "HumanoidRootPart"},
+    LeftArm = {"Left Arm", "LeftUpperArm", "LeftLowerArm", "LeftHand"},
+    RightArm = {"Right Arm", "RightUpperArm", "RightLowerArm", "RightHand"},
+    LeftLeg = {"Left Leg", "LeftUpperLeg", "LeftLowerLeg", "LeftFoot"},
+    RightLeg = {"Right Leg", "RightUpperLeg", "RightLowerLeg", "RightFoot"},
+}
+
+local ALL_BODY_PARTS = {}
+for _, group in pairs(TARGET_GROUPS) do
+    for _, part in ipairs(group) do
+        table.insert(ALL_BODY_PARTS, part)
+    end
+end
+
+local AimState = {
+    LastAimTarget = nil,
+    LastMouseMode = nil,
+    LastOriginX = nil,
+    LastOriginY = nil,
+}
+
+local function ClearAimLockState(resetMouseMode)
+    AimState.LastAimTarget = nil
+    AimState.LastOriginX = nil
+    AimState.LastOriginY = nil
+    if resetMouseMode then
+        AimState.LastMouseMode = nil
+    end
+end
+
+local CachedFilterType = (function()
+    local ok, val = pcall(function()
+        local ft = Enum.RaycastFilterType.Exclude
+        if typeof(ft) == "EnumItem" then return ft end
+    end)
+    if ok and val then return val end
+    ok, val = pcall(function()
+        local ft = Enum.RaycastFilterType.Blacklist
+        if typeof(ft) == "EnumItem" then return ft end
+    end)
+    if ok and val then return val end
+    return nil
+end)()
+
+local SharedRaycastParams = RaycastParams.new()
+SharedRaycastParams.IgnoreWater = true
+if CachedFilterType then
+    SharedRaycastParams.FilterType = CachedFilterType
+end
+
+local function Raycast(Origin, Direction, Filter)
+    SharedRaycastParams.FilterDescendantsInstances = Filter
+    return Workspace:Raycast(Origin, Direction, SharedRaycastParams)
+end
+
+local OcclusionFilter = {nil, nil}
+
+local function ObjectOccluded(Enabled, Origin, Position, Object)
+    if not Enabled then return false end
+    if typeof(Position) ~= "Vector3" then return false end
+    OcclusionFilter[1] = LocalPlayer.Character
+    OcclusionFilter[2] = Object
+    local hit = Raycast(Origin, Position - Origin, OcclusionFilter)
+    if hit and hit.Instance and not hit.Instance:IsDescendantOf(Object) then
+        return true
+    end
+    return false
+end
+
+local ViewportCache = {}
+local ViewportPool = {}
+local MAX_VIEWPORT_POOL = 64
+local _vp_floor = math.floor
+
+RunService.RenderStepped:Connect(function()
+    local recycled = 0
+    for _, entry in pairs(ViewportCache) do
+        if recycled < MAX_VIEWPORT_POOL then
+            ViewportPool[#ViewportPool + 1] = entry
+            recycled = recycled + 1
+        end
+    end
+    table.clear(ViewportCache)
+end)
+
+local function GetViewportPoint(worldPos)
+    local kx = _vp_floor(worldPos.X * 4)
+    local ky = _vp_floor(worldPos.Y * 4)
+    local kz = _vp_floor(worldPos.Z * 4)
+    local key = kx .. "|" .. ky .. "|" .. kz
+    local entry = ViewportCache[key]
+    if entry then return entry[1], entry[2] end
+
+    local screenPos, onScreen = Camera:WorldToViewportPoint(worldPos)
+    entry = table.remove(ViewportPool) or {}
+    entry[1], entry[2] = screenPos, onScreen
+    ViewportCache[key] = entry
+    return screenPos, onScreen
+end
+
+local function GetCrosshairViewportPosition(mouseBehavior)
+    if not Camera then Camera = Workspace.CurrentCamera end
+    if not Camera then return nil, nil, false end
+
+    local viewportSize = Camera.ViewportSize
+
+    if mouseBehavior == Enum.MouseBehavior.LockCenter then
+        return viewportSize.X * 0.5, viewportSize.Y * 0.5, true
+    end
+
+    local mouseLoc = UserInputService:GetMouseLocation()
+    local crosshairX = mouseLoc.X
+    local crosshairY = mouseLoc.Y
+
+    if crosshairX ~= crosshairX or crosshairY ~= crosshairY then
+        return nil, nil, false
+    end
+
+    if crosshairX < 0 or crosshairY < 0
+    or crosshairX > viewportSize.X or crosshairY > viewportSize.Y then
+        return nil, nil, false
+    end
+
+    return crosshairX, crosshairY, true
+end
+
+local CandidateList = {}
+local CandidateCount = 0
+local MAX_CANDIDATES = 15
+local ClosestResult = {nil, nil, nil, 0, 0, nil}
+
+local function CandidateSortFn(a, b)
+    return a.mag < b.mag
+end
+
+local function BoundedInsertionSort(array, count, compare)
+    for i = 2, count do
+        local key = array[i]
+        local j = i - 1
+        while j > 0 and compare(key, array[j]) do
+            array[j + 1] = array[j]
+            j = j - 1
+        end
+        array[j + 1] = key
+    end
+end
+
+local _hoistedCheckParts = {}
+local _lastTargetGroupsHash = nil
+
+local function RebuildCheckParts()
+    table.clear(_hoistedCheckParts)
+    local anySelected = false
+    for category, enabled in pairs(Flags["Aim/TargetGroups"]) do
+        if enabled then
+            anySelected = true
+            for _, partName in ipairs(TARGET_GROUPS[category]) do
+                table.insert(_hoistedCheckParts, partName)
+            end
+        end
+    end
+    if not anySelected then
+        for _, partName in ipairs(ALL_BODY_PARTS) do
+            table.insert(_hoistedCheckParts, partName)
+        end
+    end
+end
+
+local function GetClosest(Enabled, TeamCheck, VisibilityCheck, FieldOfView, StickyTarget)
+    if not Enabled then return nil end
+
+    local CameraPosition = Camera.CFrame.Position
+    local mouseBehavior = UserInputService.MouseBehavior
+
+    local crosshairX, crosshairY, crosshairValid = GetCrosshairViewportPosition(mouseBehavior)
+    if not crosshairValid then return nil end
+
+    CandidateCount = 0
+
+    local players = GetPlayersCache()
+    local lookVector = Camera.CFrame.LookVector
+    local maxCandsLimit = MAX_CANDIDATES * 3
+
+    local currentHash =
+        (Flags["Aim/TargetGroups"].Head and 1 or 0) +
+        (Flags["Aim/TargetGroups"].Torso and 2 or 0) +
+        (Flags["Aim/TargetGroups"].LeftArm and 4 or 0) +
+        (Flags["Aim/TargetGroups"].RightArm and 8 or 0) +
+        (Flags["Aim/TargetGroups"].LeftLeg and 16 or 0) +
+        (Flags["Aim/TargetGroups"].RightLeg and 32 or 0)
+    if currentHash ~= _lastTargetGroupsHash then
+        RebuildCheckParts()
+        _lastTargetGroupsHash = currentHash
+    end
+    local checkParts = _hoistedCheckParts
+
+    for _, Player in ipairs(players) do
+        if Player == LocalPlayer then continue end
+
+        local Character, RootPart = GetCharacter(Player)
+        if not Character or not RootPart then continue end
+
+        if TeamCheck then
+            local lpTeam, pTeam = LocalPlayer.Team, Player.Team
+            if lpTeam and pTeam and lpTeam == pTeam then continue end
+        end
+
+        local rootPos = RootPart.Position
+        local relPos = rootPos - CameraPosition
+        if lookVector:Dot(relPos) < 0 then continue end
+
+        for _, PartName in ipairs(checkParts) do
+            local cache = CharCache[Player]
+            local BodyPart = (cache and cache[PartName]) or Character:FindFirstChild(PartName)
+            if not BodyPart then continue end
+
+            local ActualPosition = BodyPart.Position
+
+            local ScreenPosition, OnScreen = GetViewportPoint(ActualPosition)
+            if OnScreen then
+                local screenX, screenY = ScreenPosition.X, ScreenPosition.Y
+                local dx, dy = screenX - crosshairX, screenY - crosshairY
+                local Magnitude = math.sqrt(dx * dx + dy * dy)
+
+                if Magnitude < FieldOfView then
+                    if CandidateCount < maxCandsLimit then
+                        CandidateCount = CandidateCount + 1
+                        local entry = CandidateList[CandidateCount]
+                        if not entry then
+                            entry = {}
+                            CandidateList[CandidateCount] = entry
+                        end
+                        entry.mag = Magnitude
+                        entry.ply = Player
+                        entry.char = Character
+                        entry.part = BodyPart
+                        entry.sx = screenX
+                        entry.sy = screenY
+                        entry.pos = ActualPosition
+                        entry.realPos = ActualPosition
+                    end
+                end
+            end
+        end
+    end
+
+    if CandidateCount == 0 then return nil end
+
+    if CandidateCount > 1 then
+        BoundedInsertionSort(CandidateList, CandidateCount, CandidateSortFn)
+    end
+
+    if StickyTarget then
+        for i = 1, CandidateCount do
+            local entry = CandidateList[i]
+            if entry.ply == StickyTarget then
+                if not ObjectOccluded(VisibilityCheck, CameraPosition, entry.realPos, entry.char) then
+                    ClosestResult[1] = entry.ply
+                    ClosestResult[2] = entry.char
+                    ClosestResult[3] = entry.part
+                    ClosestResult[4] = entry.sx
+                    ClosestResult[5] = entry.sy
+                    ClosestResult[6] = entry.pos
+                    return ClosestResult
+                end
+                break
+            end
+        end
+    end
+
+    local limit = math.min(CandidateCount, MAX_CANDIDATES)
+
+    for i = 1, limit do
+        local entry = CandidateList[i]
+        if not entry then continue end
+
+        if ObjectOccluded(VisibilityCheck, CameraPosition, entry.realPos, entry.char) then
+            continue
+        end
+
+        ClosestResult[1] = entry.ply
+        ClosestResult[2] = entry.char
+        ClosestResult[3] = entry.part
+        ClosestResult[4] = entry.sx
+        ClosestResult[5] = entry.sy
+        ClosestResult[6] = entry.pos
+        return ClosestResult
+    end
+
+    return nil
+end
+
+local function AimAt(Hitbox)
+    if not Hitbox then
+        ClearAimLockState(false)
+        return
+    end
+    if not mousemoverel then return end
+
+    local targetPart = Hitbox[3]
+    if not targetPart or not targetPart.Parent then
+        ClearAimLockState(false)
+        return
+    end
+
+    local currentMode = UserInputService.MouseBehavior
+    if currentMode ~= AimState.LastMouseMode then
+        AimState.LastMouseMode = currentMode
+        AimState.LastOriginX = nil
+        AimState.LastOriginY = nil
+    end
+
+    local currentTarget = Hitbox[1]
+    if currentTarget ~= AimState.LastAimTarget then
+        AimState.LastAimTarget = currentTarget
+        AimState.LastOriginX = nil
+        AimState.LastOriginY = nil
+    end
+
+    local targetPos = targetPart.Position
+    local cameraPos = Camera.CFrame.Position
+    local dist = (targetPos - cameraPos).Magnitude
+
+    if dist < 1 then return end
+
+    local ScreenPosition, OnScreen = GetViewportPoint(targetPos)
+    if not OnScreen or ScreenPosition.Z <= 0 then return end
+
+    local viewportSize = Camera.ViewportSize
+    local originX, originY, originValid = GetCrosshairViewportPosition(currentMode)
+    if not originValid then return end
+
+    AimState.LastOriginX = originX
+    AimState.LastOriginY = originY
+
+    local targetX, targetY = ScreenPosition.X, ScreenPosition.Y
+    local dx, dy = targetX - originX, targetY - originY
+
+    local mag = math.sqrt(dx * dx + dy * dy)
+    if mag > Flags["Aim/FOV/Radius"] then return end
+
+    local attractionMultiplier = Flags["Aim/AttractionStrength"] / 100
+
+    if Flags["Aim/Dampening"] then
+        local lockThreshold = Flags["Aim/Dampening/Threshold"]
+        if mag < lockThreshold then
+            local dampening = math.max(Flags["Aim/Dampening/Strength"] / 100, mag / lockThreshold)
+            attractionMultiplier = attractionMultiplier * dampening
+        end
+    end
+
+    local BASE_PULL = 0.2
+    local deltaX = dx * BASE_PULL * attractionMultiplier
+    local deltaY = dy * BASE_PULL * attractionMultiplier
+
+    if deltaX ~= deltaX or deltaY ~= deltaY then return end
+
+    local maxClampX = viewportSize.X * 0.5
+    local maxClampY = viewportSize.Y * 0.5
+
+    deltaX = math.clamp(deltaX, -maxClampX, maxClampX)
+    deltaY = math.clamp(deltaY, -maxClampY, maxClampY)
+
+    mousemoverel(math.floor(deltaX + 0.5), math.floor(deltaY + 0.5))
+end
+
+local CachedTarget = nil
+local CachedTargetTime = 0
+local TARGET_CACHE_DURATION = 0.016
+
+local function GetCachedTarget()
+    local now = os.clock()
+    if CachedTarget and (now - CachedTargetTime) < TARGET_CACHE_DURATION then
+        return CachedTarget
+    end
+
+    CachedTarget = GetClosest(
+        true,
+        Flags["Aim/TeamCheck"],
+        Flags["Aim/VisibilityCheck"],
+        Flags["Aim/FOV/Radius"],
+        AimState.LastAimTarget
+    )
+    CachedTargetTime = now
+    return CachedTarget
+end
+
+local FovCircleGui = nil
+local FovCircleFrame = nil
+
+local function EnsureFovCircleGui()
+    if FovCircleGui and FovCircleGui.Parent then return FovCircleGui end
+
+    local parent = gethui and gethui() or game:GetService("CoreGui")
+    FovCircleGui = Instance.new("ScreenGui")
+    FovCircleGui.Name = "YH_FOV"
+    FovCircleGui.DisplayOrder = 5000
+    FovCircleGui.IgnoreGuiInset = true
+    FovCircleGui.ResetOnSpawn = false
+    FovCircleGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    pcall(function() FovCircleGui.Parent = parent end)
+    if not FovCircleGui.Parent then
+        FovCircleGui.Parent = game:GetService("CoreGui")
+    end
+    return FovCircleGui
+end
+
+local function UpdateFOVCircle()
+    local showCircle = Flags["Aim/AimLock"] and Flags["Aim/FOV/ShowCircle"]
+
+    if not showCircle then
+        if FovCircleFrame then FovCircleFrame.Visible = false end
+        return
+    end
+
+    local gui = EnsureFovCircleGui()
+
+    if not FovCircleFrame or FovCircleFrame.Parent ~= gui then
+        if FovCircleFrame then SafeDestroy(FovCircleFrame) end
+
+        FovCircleFrame = Instance.new("Frame")
+        FovCircleFrame.Name = "FOVCircle"
+        FovCircleFrame.BackgroundTransparency = 1
+        FovCircleFrame.BorderSizePixel = 0
+        FovCircleFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+        FovCircleFrame.ZIndex = 1
+
+        local corner = Instance.new("UICorner")
+        corner.CornerRadius = UDim.new(1, 0); corner.Parent = FovCircleFrame
+
+        local stroke = Instance.new("UIStroke")
+        stroke.Name = "Stroke"
+        stroke.Thickness = 1.5
+        stroke.Color = Color3.fromRGB(89, 210, 255)
+        stroke.Transparency = 0.2
+        stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+        stroke.Parent = FovCircleFrame
+
+        FovCircleFrame.Parent = gui
+    end
+
+    local currentMode = UserInputService.MouseBehavior
+    local crosshairX, crosshairY, crosshairValid = GetCrosshairViewportPosition(currentMode)
+
+    if crosshairValid then
+        local radius = Flags["Aim/FOV/Radius"] or 50
+        local diameter = radius * 2
+        FovCircleFrame.Size = UDim2.fromOffset(diameter, diameter)
+        FovCircleFrame.Position = UDim2.fromOffset(crosshairX, crosshairY)
+        FovCircleFrame.Visible = true
+    else
+        FovCircleFrame.Visible = false
+    end
+end
+
+local function UpdateAim()
+    pcall(UpdateFOVCircle)
+
+    if SAFE_MODE then return end
+
+    local AimActive = Flags["Aim/AimLock"]
+    if not AimActive then
+        ClearAimLockState(false)
+        return
+    end
+
+    local target = GetCachedTarget()
+    if target then
+        AimAt(target)
+    else
+        ClearAimLockState(false)
+    end
+end
+
+local ESP = { Objects = {}, Folder = nil }
+
+local function EnsureESPFolder()
+    if ESP.Folder and ESP.Folder.Parent then return ESP.Folder end
+    local parent = gethui and gethui() or game:GetService("CoreGui")
+    ESP.Folder = Instance.new("Folder")
+    ESP.Folder.Name = "YH_ESP"
+    pcall(function() ESP.Folder.Parent = parent end)
+    if not ESP.Folder.Parent then ESP.Folder.Parent = game:GetService("CoreGui") end
+    return ESP.Folder
+end
+
+local function CreateNametag(player)
+    local folder = EnsureESPFolder()
+
+    local billboard = Instance.new("BillboardGui")
+    billboard.Name = "PV_" .. player.Name
+    billboard.Adornee = nil
+    billboard.AlwaysOnTop = true
+    billboard.Size = UDim2.new(0, 200, 0, 90)
+    billboard.StudsOffset = Vector3.new(0, 3.2, 0)
+    billboard.MaxDistance = Flags["ESP/MaxDistance"]
+    billboard.Enabled = false
+    billboard.Parent = folder
+
+    local layout = Instance.new("UIListLayout")
+    layout.FillDirection = Enum.FillDirection.Vertical
+    layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    layout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+    layout.SortOrder = Enum.SortOrder.LayoutOrder
+    layout.Padding = UDim.new(0, 1)
+    layout.Parent = billboard
+
+    local label = Instance.new("TextLabel")
+    label.Name = "NameLabel"
+    label.Size = UDim2.new(1, 0, 0, 18)
+    label.BackgroundTransparency = 1
+    label.Text = player.Name
+    label.TextColor3 = ROLE_COLORS.Unknown
+    label.TextStrokeTransparency = 0
+    label.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+    label.TextSize = 14
+    label.Font = Enum.Font.GothamBold
+    label.TextTransparency = Flags["ESP/NametagOpacity"]
+    label.LayoutOrder = 1
+    label.Parent = billboard
+
+    local healthNum = Instance.new("TextLabel")
+    healthNum.Name = "HealthNum"
+    healthNum.Size = UDim2.new(1, 0, 0, 16)
+    healthNum.BackgroundTransparency = 1
+    healthNum.Text = "100/100"
+    healthNum.TextColor3 = Color3.fromRGB(255, 255, 255)
+    healthNum.TextStrokeTransparency = 0
+    healthNum.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+    healthNum.TextSize = 13
+    healthNum.Font = Enum.Font.GothamBold
+    healthNum.TextTransparency = Flags["ESP/NametagOpacity"]
+    healthNum.LayoutOrder = 2
+    healthNum.Visible = Flags["ESP/HealthIndicator"]
+    healthNum.Parent = billboard
+
+    local healthBarBG = Instance.new("Frame")
+    healthBarBG.Name = "HealthBarBG"
+    healthBarBG.Size = UDim2.new(0.7, 0, 0, 5)
+    healthBarBG.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+    healthBarBG.BorderSizePixel = 0
+    healthBarBG.LayoutOrder = 3
+    healthBarBG.Visible = Flags["ESP/HealthIndicator"]
+    healthBarBG.Parent = billboard
+    local hbCorner = Instance.new("UICorner")
+    hbCorner.CornerRadius = UDim.new(1, 0); hbCorner.Parent = healthBarBG
+
+    local healthBarFill = Instance.new("Frame")
+    healthBarFill.Name = "HealthBarFill"
+    healthBarFill.Size = UDim2.fromScale(1, 1)
+    healthBarFill.BackgroundColor3 = Color3.fromRGB(70, 220, 100)
+    healthBarFill.BorderSizePixel = 0
+    healthBarFill.Parent = healthBarBG
+    local hbfCorner = Instance.new("UICorner")
+    hbfCorner.CornerRadius = UDim.new(1, 0); hbfCorner.Parent = healthBarFill
+
+    local distanceLabel = Instance.new("TextLabel")
+    distanceLabel.Name = "DistanceLabel"
+    distanceLabel.Size = UDim2.new(1, 0, 0, 16)
+    distanceLabel.BackgroundTransparency = 1
+    distanceLabel.Text = "0"
+    distanceLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+    distanceLabel.TextStrokeTransparency = 0
+    distanceLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+    distanceLabel.TextSize = 12
+    distanceLabel.Font = Enum.Font.GothamMedium
+    distanceLabel.TextTransparency = Flags["ESP/NametagOpacity"]
+    distanceLabel.LayoutOrder = 4
+    distanceLabel.Visible = Flags["ESP/ShowDistance"]
+    distanceLabel.Parent = billboard
+
+    local equippedLabel = Instance.new("TextLabel")
+    equippedLabel.Name = "EquippedLabel"
+    equippedLabel.Size = UDim2.new(1, 0, 0, 16)
+    equippedLabel.BackgroundTransparency = 1
+    equippedLabel.Text = "[Unarmed]"
+    equippedLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+    equippedLabel.TextStrokeTransparency = 0
+    equippedLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+    equippedLabel.TextSize = 12
+    equippedLabel.Font = Enum.Font.GothamMedium
+    equippedLabel.TextTransparency = Flags["ESP/NametagOpacity"]
+    equippedLabel.LayoutOrder = 5
+    equippedLabel.Visible = Flags["ESP/ShowEquipped"]
+    equippedLabel.Parent = billboard
+
+    local highlight = Instance.new("Highlight")
+    highlight.Name = "PV_HL_" .. player.Name
+    highlight.Adornee = nil
+    highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+    highlight.FillColor = ROLE_COLORS.Unknown
+    highlight.FillTransparency = Flags["ESP/HighlightFillAlpha"]
+    highlight.OutlineColor = ROLE_COLORS.Unknown
+    highlight.OutlineTransparency = Flags["ESP/HighlightOutlineAlpha"]
+    highlight.Enabled = false
+    highlight.Parent = folder
+
+    ESP.Objects[player] = {
+        Nametag      = billboard,
+        Label        = label,
+        HealthNum    = healthNum,
+        HealthBarBG  = healthBarBG,
+        HealthBarFill= healthBarFill,
+        DistanceLabel= distanceLabel,
+        EquippedLabel= equippedLabel,
+        Highlight    = highlight,
+        LastName     = player.Name,
+        LastRole     = nil,
+        LastHealth   = -1,
+        LastMaxHealth= -1,
+        LastDistance = -1,
+        LastEquipped = "",
+    }
+end
+
+local function RemoveNametag(player)
+    local data = ESP.Objects[player]
+    if not data then return end
+    SafeDestroy(data.Nametag)
+    if data.Highlight then SafeDestroy(data.Highlight) end
+    ESP.Objects[player] = nil
+end
+
+local function UpdateNametag(player)
+    local data = ESP.Objects[player]
+    if not data then return end
+
+    local shouldShow = Flags["ESP/Enabled"]
+    if shouldShow and Flags["ESP/TeamCheck"] then
+        if player.Team and LocalPlayer.Team and player.Team == LocalPlayer.Team then
+            shouldShow = false
+        end
+    end
+    if shouldShow and player == LocalPlayer then shouldShow = false end
+
+    local char = player.Character
+    local root = char and (char:FindFirstChild("HumanoidRootPart") or char.PrimaryPart)
+    local humanoid = char and char:FindFirstChildOfClass("Humanoid")
+    if not root or not humanoid or humanoid.Health <= 0 then shouldShow = false end
+
+    local dist = 0
+    if shouldShow then
+        local myRoot = LocalPlayer.Character
+            and (LocalPlayer.Character:FindFirstChild("HumanoidRootPart") or LocalPlayer.Character.PrimaryPart)
+        if myRoot then
+            dist = (root.Position - myRoot.Position).Magnitude
+            if dist > Flags["ESP/MaxDistance"] then shouldShow = false end
+        end
+    end
+
+    if not shouldShow then
+        SafeSet(data.Nametag, "Enabled", false)
+        if data.Highlight then SafeSet(data.Highlight, "Enabled", false) end
+        return
+    end
+
+    if data.Nametag.Adornee ~= root then data.Nametag.Adornee = root end
+    SafeSet(data.Nametag, "Enabled", true)
+    SafeSet(data.Nametag, "MaxDistance", Flags["ESP/MaxDistance"])
+
+    if data.Highlight then
+        local hlActive = Flags["ESP/HighlightEnabled"]
+        if data.Highlight.Adornee ~= char then data.Highlight.Adornee = char end
+        SafeSet(data.Highlight, "Enabled", hlActive)
+    end
+
+    if Flags["ESP/ShowUsername"] then
+        if data.LastName ~= player.Name then
+            data.LastName = player.Name
+            SafeSet(data.Label, "Text", player.Name)
+        end
+        SafeSet(data.Label, "Visible", true)
+    else
+        SafeSet(data.Label, "Visible", false)
+    end
+
+    local health, maxHealth = GetHealth(player)
+    if data.HealthNum then
+        SafeSet(data.HealthNum, "Visible", Flags["ESP/HealthIndicator"])
+        if data.LastHealth ~= math.floor(health) or data.LastMaxHealth ~= math.floor(maxHealth) then
+            data.LastHealth = math.floor(health)
+            data.LastMaxHealth = math.floor(maxHealth)
+            SafeSet(data.HealthNum, "Text", string.format("%d / %d", math.floor(health), math.floor(maxHealth)))
+            local hpColor = GetHealthColor(health, maxHealth)
+            SafeSet(data.HealthNum, "TextColor3", hpColor)
+            if data.HealthBarFill then
+                local pct = math.clamp(health / math.max(maxHealth, 1), 0, 1)
+                SafeSet(data.HealthBarFill, "Size", UDim2.fromScale(pct, 1))
+                SafeSet(data.HealthBarFill, "BackgroundColor3", hpColor)
+            end
+        end
+    end
+    if data.HealthBarBG then
+        SafeSet(data.HealthBarBG, "Visible", Flags["ESP/HealthIndicator"])
+    end
+
+    if data.DistanceLabel then
+        SafeSet(data.DistanceLabel, "Visible", Flags["ESP/ShowDistance"])
+        local distRounded = math.floor(dist)
+        if math.abs(data.LastDistance - distRounded) >= 1 then
+            data.LastDistance = distRounded
+            SafeSet(data.DistanceLabel, "Text", string.format("%d studs", distRounded))
+        end
+    end
+
+    if data.EquippedLabel then
+        SafeSet(data.EquippedLabel, "Visible", Flags["ESP/ShowEquipped"])
+        local tool = char:FindFirstChildOfClass("Tool")
+        local toolName = tool and tool.Name or "Unarmed"
+        local equippedStr = "[" .. toolName .. "]"
+        if data.LastEquipped ~= equippedStr then
+            data.LastEquipped = equippedStr
+            SafeSet(data.EquippedLabel, "Text", equippedStr)
+        end
+    end
+
+    local role = Flags["ESP/ColorByRole"] and DetectRole(player) or nil
+    if role then
+        if data.LastRole ~= role then
+            data.LastRole = role
+            local color = ROLE_COLORS[role] or ROLE_COLORS.Unknown
+            SafeSet(data.Label, "TextColor3", color)
+            if data.Highlight then
+                SafeSet(data.Highlight, "FillColor", color)
+                SafeSet(data.Highlight, "OutlineColor", color)
+            end
+        end
+    else
+        if data.LastRole ~= "plain" then
+            data.LastRole = "plain"
+            SafeSet(data.Label, "TextColor3", ROLE_COLORS.Neutral)
+            if data.Highlight then
+                SafeSet(data.Highlight, "FillColor", ROLE_COLORS.Neutral)
+                SafeSet(data.Highlight, "OutlineColor", ROLE_COLORS.Neutral)
+            end
+        end
+    end
+end
+
+local function RefreshESP()
+    local players = Players:GetPlayers()
+    for _, p in ipairs(players) do
+        if p ~= LocalPlayer then
+            if not ESP.Objects[p] then CreateNametag(p) end
+            UpdateNametag(p)
+        end
+    end
+    for p, _ in pairs(ESP.Objects) do
+        if not p.Parent then RemoveNametag(p) end
+    end
+end
+
+local ESP2D = { Objects = {}, Gui = nil }
+
+local function EnsureESP2DGui()
+    if ESP2D.Gui and ESP2D.Gui.Parent then return ESP2D.Gui end
+    local gui = Instance.new("ScreenGui")
+    gui.Name = "YH_ESP2D"
+    gui.IgnoreGuiInset = true
+    gui.ResetOnSpawn = false
+    gui.DisplayOrder = 998
+    local parent = gethui and gethui() or game:GetService("CoreGui")
+    local ok = pcall(function() gui.Parent = parent end)
+    if not ok or not gui.Parent then gui.Parent = LocalPlayer:WaitForChild("PlayerGui") end
+    ESP2D.Gui = gui
+    return gui
+end
+
+local function CreateESP2D(player)
+    local gui = EnsureESP2DGui()
+    local root = Instance.new("Frame")
+    root.Name = "P_" .. player.UserId
+    root.BackgroundTransparency = 1
+    root.BorderSizePixel = 0
+    root.Visible = false
+    root.Parent = gui
+
+    local box = Instance.new("Frame")
+    box.Name = "Box"
+    box.BackgroundTransparency = 1
+    box.BorderSizePixel = 0
+    box.Size = UDim2.fromScale(1, 1)
+    box.Parent = root
+    local boxStroke = Instance.new("UIStroke")
+    boxStroke.Thickness = 1.5
+    boxStroke.Color = ROLE_COLORS.Unknown
+    boxStroke.Transparency = 0.04
+    boxStroke.Parent = box
+
+    local healthBG = Instance.new("Frame")
+    healthBG.Name = "HealthBG"
+    healthBG.BackgroundColor3 = Color3.fromRGB(12, 15, 19)
+    healthBG.BackgroundTransparency = 0.12
+    healthBG.BorderSizePixel = 0
+    healthBG.Visible = false
+    healthBG.Parent = gui
+    local healthFill = Instance.new("Frame")
+    healthFill.Name = "HealthFill"
+    healthFill.BackgroundColor3 = Color3.fromRGB(80, 230, 130)
+    healthFill.BorderSizePixel = 0
+    healthFill.Parent = healthBG
+
+    ESP2D.Objects[player] = {Root = root, Box = box, Stroke = boxStroke, HealthBG = healthBG, HealthFill = healthFill}
+end
+
+local function RemoveESP2D(player)
+    local data = ESP2D.Objects[player]
+    if not data then return end
+    SafeDestroy(data.Root)
+    SafeDestroy(data.HealthBG)
+    ESP2D.Objects[player] = nil
+end
+
+local function UpdateESP2D()
+    local camera = Workspace.CurrentCamera
+    if not camera then return end
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer then
+            if not ESP2D.Objects[player] then CreateESP2D(player) end
+            local data = ESP2D.Objects[player]
+            local char = player.Character
+            local hum = char and char:FindFirstChildOfClass("Humanoid")
+            local shouldShow = Flags["ESP/Enabled"] and (Flags["ESP/BoxEnabled"] or Flags["ESP/HealthBarEnabled"]) and char and hum and hum.Health > 0
+            if shouldShow and Flags["ESP/TeamCheck"] and player.Team and LocalPlayer.Team and player.Team == LocalPlayer.Team then
+                shouldShow = false
+            end
+            local rootPart = char and (char:FindFirstChild("HumanoidRootPart") or char.PrimaryPart)
+            local localRoot = LocalPlayer.Character and (LocalPlayer.Character:FindFirstChild("HumanoidRootPart") or LocalPlayer.Character.PrimaryPart)
+            if shouldShow and rootPart and localRoot then
+                local dist = (rootPart.Position - localRoot.Position).Magnitude
+                if dist > (Flags["ESP/MaxDistance"] or 5000) then shouldShow = false end
+            end
+            if shouldShow then
+                local ok, cf, size = pcall(function() return char:GetBoundingBox() end)
+                if ok and cf and size then
+                    local half = size * 0.5
+                    local corners = {
+                        Vector3.new(-half.X,-half.Y,-half.Z), Vector3.new(-half.X,-half.Y,half.Z),
+                        Vector3.new(-half.X,half.Y,-half.Z), Vector3.new(-half.X,half.Y,half.Z),
+                        Vector3.new(half.X,-half.Y,-half.Z), Vector3.new(half.X,-half.Y,half.Z),
+                        Vector3.new(half.X,half.Y,-half.Z), Vector3.new(half.X,half.Y,half.Z),
+                    }
+                    local minX, minY, maxX, maxY = math.huge, math.huge, -math.huge, -math.huge
+                    local valid = false
+                    for _, corner in ipairs(corners) do
+                        local v, onScreen = camera:WorldToViewportPoint(cf:PointToWorldSpace(corner))
+                        if v.Z > 0 then
+                            valid = true
+                            minX, minY = math.min(minX, v.X), math.min(minY, v.Y)
+                            maxX, maxY = math.max(maxX, v.X), math.max(maxY, v.Y)
+                        end
+                    end
+                    if valid and maxX > minX and maxY > minY then
+                        minX, minY = math.floor(minX), math.floor(minY)
+                        maxX, maxY = math.floor(maxX), math.floor(maxY)
+                        data.Root.Position = UDim2.fromOffset(minX, minY)
+                        data.Root.Size = UDim2.fromOffset(math.max(2, maxX-minX), math.max(2, maxY-minY))
+                        data.Root.Visible = true
+                        data.Box.Visible = Flags["ESP/BoxEnabled"]
+                        local color = ROLE_COLORS.Neutral
+                        if Flags["ESP/ColorByRole"] then
+                            local role = DetectRole(player)
+                            color = ROLE_COLORS[role] or ROLE_COLORS.Unknown
+                        end
+                        data.Stroke.Color = color
+
+                        local health, maxHealth = GetHealth(player)
+                        local pct = math.clamp(health / math.max(maxHealth, 1), 0, 1)
+                        local hpColor = GetHealthColor(health, maxHealth)
+                        local barOn = Flags["ESP/HealthBarEnabled"]
+                        data.HealthBG.Visible = barOn
+                        data.HealthBG.BackgroundColor3 = Color3.fromRGB(12,15,19)
+                        data.HealthFill.BackgroundColor3 = hpColor
+                        if Flags["ESP/HealthBarVertical"] then
+                            data.HealthBG.Position = UDim2.fromOffset(minX - 7, minY)
+                            data.HealthBG.Size = UDim2.fromOffset(4, math.max(2, maxY-minY))
+                            data.HealthFill.AnchorPoint = Vector2.new(0, 1)
+                            data.HealthFill.Position = UDim2.new(0, 0, 1, 0)
+                            data.HealthFill.Size = UDim2.new(1, 0, pct, 0)
+                        else
+                            data.HealthBG.Position = UDim2.fromOffset(minX, maxY + 4)
+                            data.HealthBG.Size = UDim2.fromOffset(math.max(2, maxX-minX), 4)
+                            data.HealthFill.AnchorPoint = Vector2.new(0, 0)
+                            data.HealthFill.Position = UDim2.fromOffset(0, 0)
+                            data.HealthFill.Size = UDim2.new(pct, 0, 1, 0)
+                        end
+                    else
+                        data.Root.Visible = false
+                        data.HealthBG.Visible = false
+                    end
+                else
+                    data.Root.Visible = false
+                    data.HealthBG.Visible = false
+                end
+            else
+                data.Root.Visible = false
+                data.HealthBG.Visible = false
+            end
+        end
+    end
+    for player in pairs(ESP2D.Objects) do
+        if not player.Parent then RemoveESP2D(player) end
+    end
+end
+
+local Noclip = {
+    Broken = {},
+    BrokenCount = 0,
+    OverlapParams = OverlapParams.new(),
+    RaycastParams = RaycastParams.new(),
+    ScratchIgnore = {},
+}
+
+Noclip.OverlapParams.FilterType = Enum.RaycastFilterType.Exclude
+Noclip.OverlapParams.MaxParts = 0
+Noclip.RaycastParams.FilterType = Enum.RaycastFilterType.Exclude
+Noclip.RaycastParams.IgnoreWater = true
+
+local _feetPartsBuffer = {}
+
+local function GetPartsUnderFeet(char)
+    table.clear(_feetPartsBuffer)
+    if not char then return _feetPartsBuffer end
+
+    local root = char:FindFirstChild("HumanoidRootPart") or char.PrimaryPart
+    if not root then return _feetPartsBuffer end
+
+    local ignore = Noclip.ScratchIgnore
+    table.clear(ignore)
+    ignore[1] = char
+    Noclip.RaycastParams.FilterDescendantsInstances = ignore
+
+    local basePos = root.Position - Vector3.new(0, 2.5, 0)
+    local direction = Vector3.new(0, -12, 0)
+    local rootCF = root.CFrame
+
+    local relOffsets = {
+        Vector3.new(0, 0, 0),
+        Vector3.new(-1.2, 0, -1.2), Vector3.new(1.2, 0, -1.2),
+        Vector3.new(-1.2, 0, 1.2),  Vector3.new(1.2, 0, 1.2),
+    }
+
+    for _, relOff in ipairs(relOffsets) do
+        local origin = basePos + rootCF:VectorToWorldSpace(relOff)
+        local ok, result = pcall(function()
+            return Workspace:Raycast(origin, direction, Noclip.RaycastParams)
+        end)
+        if ok and result and result.Instance then
+            _feetPartsBuffer[result.Instance] = true
+        end
+    end
+
+    return _feetPartsBuffer
+end
+
+local function ShouldBreak(part, feetParts)
+    if not part or not part:IsA("BasePart") then return false end
+    if part:IsA("Terrain") then return false end
+    if not part.Parent then return false end
+
+    local myChar = LocalPlayer.Character
+    if myChar and part:IsDescendantOf(myChar) then return false end
+
+    local model = part:FindFirstAncestorOfClass("Model")
+    if model and Players:GetPlayerFromCharacter(model) then return false end
+
+    if part:IsA("SpawnLocation") then return false end
+    if feetParts and feetParts[part] then return false end
+
+    local name = string.lower(part.Name)
+    if name == "baseplate" or name == "ground" or name == "floor"
+    or name == "terrain" or name == "base" then
+        return false
+    end
+
+    if part.Size.X > 400 and part.Size.Z > 400 then return false end
+
+    if part.Anchored then
+        if not Flags["Noclip/IncludeAnchored"] then return false end
+    else
+        if not Flags["Noclip/IncludeUnanchored"] then return false end
+    end
+
+    return true
+end
+
+local function BreakPart(part)
+    if Noclip.Broken[part] then
+        if part.CanCollide then
+            pcall(function() part.CanCollide = false end)
+        end
+        return
+    end
+
+    Noclip.Broken[part] = { cc = part.CanCollide }
+    Noclip.BrokenCount = Noclip.BrokenCount + 1
+    pcall(function() part.CanCollide = false end)
+end
+
+local function RestorePart(part)
+    local data = Noclip.Broken[part]
+    if not data then return end
+    pcall(function()
+        if part and part.Parent and type(data) == "table" then
+            part.CanCollide = data.cc
+        end
+    end)
+    Noclip.Broken[part] = nil
+    Noclip.BrokenCount = math.max(0, Noclip.BrokenCount - 1)
+end
+
+local function RestoreAll()
+    for part, data in pairs(Noclip.Broken) do
+        pcall(function()
+            if part and part.Parent and type(data) == "table" then
+                part.CanCollide = data.cc
+            end
+        end)
+    end
+    Noclip.Broken = {}
+    Noclip.BrokenCount = 0
+end
+
+local function ScanAndBreak()
+    local char = LocalPlayer.Character
+    if not char then return end
+    local root = char:FindFirstChild("HumanoidRootPart") or char.PrimaryPart
+    if not root then return end
+
+    local radius = Flags["Noclip/Radius"] or 300
+    local origin = root.Position
+    local feetParts = GetPartsUnderFeet(char)
+
+    local ignore = Noclip.ScratchIgnore
+    table.clear(ignore)
+    ignore[1] = char
+    Noclip.OverlapParams.FilterDescendantsInstances = ignore
+
+    local ok, parts = pcall(function()
+        return Workspace:GetPartBoundsInRadius(origin, radius, Noclip.OverlapParams)
+    end)
+    if not ok or not parts then return end
+
+    for _, part in ipairs(parts) do
+        if ShouldBreak(part, feetParts) then
+            BreakPart(part)
+        end
+    end
+end
+
+local function EnforceNoclip()
+    if next(Noclip.Broken) == nil then return end
+
+    local char = LocalPlayer.Character
+    if not char then return end
+    local root = char:FindFirstChild("HumanoidRootPart") or char.PrimaryPart
+    if not root then return end
+
+    local feetParts = GetPartsUnderFeet(char)
+    local toRemove, toRestore = nil, nil
+
+    for part, _ in pairs(Noclip.Broken) do
+        if not part or not part.Parent then
+            toRemove = toRemove or {}
+            toRemove[#toRemove + 1] = part
+        elseif feetParts[part] then
+            toRestore = toRestore or {}
+            toRestore[#toRestore + 1] = part
+        elseif part.CanCollide then
+            pcall(function() part.CanCollide = false end)
+        end
+    end
+
+    if toRemove then
+        for _, part in ipairs(toRemove) do
+            if Noclip.Broken[part] then
+                Noclip.Broken[part] = nil
+                Noclip.BrokenCount = math.max(0, Noclip.BrokenCount - 1)
+            end
+        end
+    end
+    if toRestore then
+        for _, part in ipairs(toRestore) do
+            RestorePart(part)
+        end
+    end
+end
+
+local AutoGive = { Running = false }
+
+local MP5_ORIGIN_POS       = Vector3.new(813.698, 97.85, 2229.396)
+local REMINGTON_ORIGIN_POS = Vector3.new(820.298, 97.85, 2229.396)
+local MATCH_TOLERANCE      = 5
+
+local TP_HEIGHT_OFFSET = 6
+local TP_DWELL_TIME    = 0.8
+
+local function FindTouchGiverByPos(targetPos)
+    for _, obj in ipairs(Workspace:GetChildren()) do
+        if obj.Name == "TouchGiver" and obj:IsA("Model") then
+            local ok, pos = pcall(function()
+                local primary = obj.PrimaryPart or obj:FindFirstChildWhichIsA("BasePart")
+                return primary and primary.Position
+            end)
+            if ok and pos and (pos - targetPos).Magnitude < MATCH_TOLERANCE then
+                return obj, pos
+            end
+        end
+    end
+    return nil
+end
+
+local function GetMyRoot()
+    local char = LocalPlayer.Character
+    if not char then return nil end
+    return char:FindFirstChild("HumanoidRootPart") or char.PrimaryPart
+end
+
+local function TeleportToTouchGiver(touchPos, myRoot, homeCFrame)
+    if not myRoot or not touchPos then return end
+    local targetCFrame = CFrame.new(touchPos + Vector3.new(0, TP_HEIGHT_OFFSET, 0))
+
+    pcall(function() myRoot.CFrame = targetCFrame end)
+    task.wait(TP_DWELL_TIME)
+    pcall(function() myRoot.CFrame = homeCFrame end)
+    task.wait(0.1)
+end
+
+local function SpawnTouchGiversInFront(force)
+    if not force and not Flags["AutoGive/Enabled"] then return end
+    if AutoGive.Running then return end
+    AutoGive.Running = true
+
+    task.wait(1.2)
+    local myRoot = GetMyRoot()
+    if not myRoot then
+        AutoGive.Running = false
+        return
+    end
+
+    local homeCFrame = myRoot.CFrame
+    local _, mp5Pos = FindTouchGiverByPos(MP5_ORIGIN_POS)
+    local _, remPos = FindTouchGiverByPos(REMINGTON_ORIGIN_POS)
+
+    if not mp5Pos and not remPos then
+        AutoGive.Running = false
+        return
+    end
+
+    if remPos then
+        TeleportToTouchGiver(remPos, myRoot, homeCFrame)
+        myRoot = GetMyRoot()
+        if myRoot then homeCFrame = myRoot.CFrame end
+    end
+
+    if mp5Pos then
+        TeleportToTouchGiver(mp5Pos, myRoot, homeCFrame)
+    end
+
+    local finalRoot = GetMyRoot()
+    if finalRoot then
+        pcall(function() finalRoot.CFrame = homeCFrame end)
+    end
+
+    AutoGive.Running = false
+end
+
+local ArrestState = {
+    Running = false,
+    SelectedPlayer = nil,
+    ChaserConn = nil,
+    EndTime = 0,
+    HomeCFrame = nil,
+    TargetRoot = nil,
+}
+
+local function GetCriminalsList()
+    local out = {}
+    for _, p in ipairs(GetPlayersCache()) do
+        if p ~= LocalPlayer and p.Parent then
+            local role = DetectRole(p)
+            if role == "Criminal" then
+                local char, root = GetCharacter(p)
+                if char and root then
+                    local myRoot = GetMyRoot()
+                    local dist = myRoot and (root.Position - myRoot.Position).Magnitude or 0
+                    table.insert(out, { player = p, dist = dist })
+                end
+            end
+        end
+    end
+    table.sort(out, function(a, b) return a.dist < b.dist end)
+    return out
+end
+
+local function EquipToolByName(toolName)
+    local char = LocalPlayer.Character
+    local backpack = LocalPlayer:FindFirstChild("Backpack")
+    if not char or not backpack then return false end
+
+    local equipped = char:FindFirstChildOfClass("Tool")
+    if equipped and equipped.Name == toolName then return true end
+
+    local tool = backpack:FindFirstChild(toolName)
+    if not tool or not tool:IsA("Tool") then return false end
+
+    local hum = char:FindFirstChildOfClass("Humanoid")
+    if not hum then return false end
+
+    pcall(function() hum:EquipTool(tool) end)
+    return true
+end
+
+local function GetBehindCFrame(targetRoot)
+    if not targetRoot then return nil end
+    local dist = Flags["Arrest/StickDistance"] or 2.2
+    local height = Flags["Arrest/StickHeight"] or 0
+    return targetRoot.CFrame * CFrame.new(0, height, dist)
+end
+
+local function StartChaser(targetRoot)
+    local char = LocalPlayer.Character
+    if not char then return nil end
+    local myRoot = char:FindFirstChild("HumanoidRootPart") or char.PrimaryPart
+    local hum = char:FindFirstChildOfClass("Humanoid")
+    if not myRoot or not hum then return nil end
+
+    pcall(function() hum.AutoRotate = false end)
+
+    local chaserConn
+    chaserConn = RunService.RenderStepped:Connect(function()
+        local myR = LocalPlayer.Character
+            and (LocalPlayer.Character:FindFirstChild("HumanoidRootPart") or LocalPlayer.Character.PrimaryPart)
+        if not myR then return end
+
+        local behind = GetBehindCFrame(targetRoot)
+        if behind then
+            pcall(function()
+                myR.CFrame = behind
+                myR.AssemblyLinearVelocity = Vector3.zero
+            end)
+        end
+    end)
+
+    return chaserConn
+end
+
+local function StopChaser(restoreCFrame)
+    if ArrestState.ChaserConn then
+        pcall(function() ArrestState.ChaserConn:Disconnect() end)
+        ArrestState.ChaserConn = nil
+    end
+
+    local char = LocalPlayer.Character
+    local hum = char and char:FindFirstChildOfClass("Humanoid")
+    if hum then pcall(function() hum.AutoRotate = true end) end
+
+    local myRoot = char and (char:FindFirstChild("HumanoidRootPart") or char.PrimaryPart)
+    if myRoot and restoreCFrame then
+        pcall(function() myRoot.CFrame = restoreCFrame end)
+    end
+
+    ArrestState.TargetRoot = nil
+    ArrestState.HomeCFrame = nil
+    ArrestState.EndTime = 0
+end
+
+local function ArrestPlayer(targetPlayer)
+    if not targetPlayer or not targetPlayer.Parent then return false end
+    if ArrestState.Running then return false end
+
+    ArrestState.Running = true
+
+    local myChar = LocalPlayer.Character
+    local myRoot = myChar and (myChar:FindFirstChild("HumanoidRootPart") or myChar.PrimaryPart)
+    if not myRoot then
+        ArrestState.Running = false
+        return false
+    end
+
+    local homeCFrame = myRoot.CFrame
+    local toolName = Flags["Arrest/ToolName"] or "Handcuffs"
+    local equipped = EquipToolByName(toolName)
+    if not equipped then
+        Rayfield:Notify({Title = "Arrest", Content = "Could not equip " .. toolName .. ".", Duration = 3})
+        ArrestState.Running = false
+        return false
+    end
+
+    task.wait(0.2)
+
+    local targetChar, targetRoot = GetCharacter(targetPlayer)
+    if not targetChar or not targetRoot then
+        Rayfield:Notify({Title = "Arrest", Content = "Target character not found.", Duration = 3})
+        pcall(function() myRoot.CFrame = homeCFrame end)
+        ArrestState.Running = false
+        return false
+    end
+
+    local behind = GetBehindCFrame(targetRoot)
+    if behind then
+        pcall(function() myRoot.CFrame = behind end)
+        task.wait(0.1)
+    end
+
+    ArrestState.TargetRoot = targetRoot
+    ArrestState.HomeCFrame = homeCFrame
+    ArrestState.EndTime = tick() + (Flags["Arrest/StickDuration"] or 5)
+    ArrestState.ChaserConn = StartChaser(targetRoot)
+
+    Rayfield:Notify({Title = "Arrest", Content = string.format("Sticking to %s. Click them to arrest!", targetPlayer.Name), Duration = 3})
+    return true
+end
+
+local function StopArrestStick()
+    if not ArrestState.Running then return end
+    ArrestState.Running = false
+    StopChaser(ArrestState.HomeCFrame)
+    Rayfield:Notify({Title = "Arrest", Content = "Stopped sticking.", Duration = 2})
+end
+
+local TELEPORT_PRESETS = {
+    {name = "Entrance Tower",          pos = Vector3.new(510,  122, 2325)},
+    {name = "Police Car Spawn",        pos = Vector3.new(595,  98,  2497)},
+    {name = "Police Armory",           pos = Vector3.new(816,  99,  2237)},
+    {name = "Rooftop (Escape)",        pos = Vector3.new(946,  135, 2201)},
+    {name = "Yard Tower",              pos = Vector3.new(822,  125, 2587)},
+    {name = "Hammer",                  pos = Vector3.new(806,  98,  2525)},
+    {name = "Knife",                   pos = Vector3.new(707,  97,  2508)},
+    {name = "Criminal Armory",         pos = Vector3.new(-936, 94,  2043)},
+    {name = "Criminal Car Spawn",      pos = Vector3.new(-912, 95,  2160)},
+    {name = "Criminal Tower Rooftop",  pos = Vector3.new(-371, 114, 1992)},
+}
+
+local function TeleportToPosition(pos)
+    if typeof(pos) ~= "Vector3" then return false end
+    local char = LocalPlayer.Character
+    if not char then return false end
+    local root = char:FindFirstChild("HumanoidRootPart") or char.PrimaryPart
+    if not root then return false end
+
+    pcall(function()
+        root.CFrame = CFrame.new(pos + Vector3.new(0, 3, 0))
+        root.AssemblyLinearVelocity = Vector3.zero
+        root.AssemblyAngularVelocity = Vector3.zero
+    end)
+    return true
+end
+
+local function GetCurrentPosition()
+    local char = LocalPlayer.Character
+    if not char then return nil end
+    local root = char:FindFirstChild("HumanoidRootPart") or char.PrimaryPart
+    if not root then return nil end
+    return root.Position
+end
+
+local HitboxState = { Original = {} }
+
+local function HitboxRemember(part)
+    if not HitboxState.Original[part] then
+        HitboxState.Original[part] = {Size = part.Size, Transparency = part.Transparency}
+    end
+end
+
+local function HitboxRestoreCharacter(char)
+    if not char then return end
+    for _, part in ipairs(char:GetDescendants()) do
+        local original = HitboxState.Original[part]
+        if part:IsA("BasePart") and original then
+            pcall(function() part.Size = original.Size; part.Transparency = original.Transparency end)
+            HitboxState.Original[part] = nil
+        end
+    end
+    local viz = char:FindFirstChild("YHHitboxViz")
+    if viz then viz:Destroy() end
+end
+
+local function HitboxApplyCharacter(char)
+    if not Flags["Hitbox/Enabled"] or not char then return end
+    local player = Players:GetPlayerFromCharacter(char)
+    if not player or (player == LocalPlayer and not Flags["Hitbox/IncludeSelf"]) then return end
+    local parts = {}
+    if Flags["Hitbox/AllParts"] then
+        for _, part in ipairs(char:GetDescendants()) do
+            if part:IsA("BasePart") and part.Name ~= "HumanoidRootPart" then table.insert(parts, part) end
+        end
+        local hrp = char:FindFirstChild("HumanoidRootPart")
+        if hrp then table.insert(parts, hrp) end
+    else
+        local hrp = char:FindFirstChild("HumanoidRootPart")
+        if hrp then table.insert(parts, hrp) end
+    end
+    for _, part in ipairs(parts) do
+        HitboxRemember(part)
+        pcall(function()
+            part.Size = Vector3.new(Flags["Hitbox/Size"], Flags["Hitbox/Size"], Flags["Hitbox/Size"])
+            part.Transparency = Flags["Hitbox/Transparency"]
+        end)
+    end
+    local viz = char:FindFirstChild("YHHitboxViz")
+    if Flags["Hitbox/Visualizer"] then
+        if not viz then
+            viz = Instance.new("Highlight")
+            viz.Name = "YHHitboxViz"
+            viz.FillColor = Color3.fromRGB(89, 210, 255)
+            viz.FillTransparency = 0.55
+            viz.OutlineColor = Color3.fromRGB(89, 210, 255)
+            viz.OutlineTransparency = 0.05
+            viz.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+            viz.Adornee = char
+            viz.Parent = char
+        end
+    elseif viz then viz:Destroy() end
+end
+
+local function HitboxRestoreAll()
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player.Character then HitboxRestoreCharacter(player.Character) end
+    end
+    for part, original in pairs(HitboxState.Original) do
+        if part and part.Parent then
+            pcall(function() part.Size = original.Size; part.Transparency = original.Transparency end)
+        end
+    end
+    table.clear(HitboxState.Original)
+end
+
+local function HitboxRefreshAll()
+    HitboxRestoreAll()
+    if Flags["Hitbox/Enabled"] then
+        for _, player in ipairs(Players:GetPlayers()) do
+            if player.Character then HitboxApplyCharacter(player.Character) end
+        end
+    end
+end
+
+local AimTab = Window:CreateTab("Aim", 4483362458)
+local ESPTab = Window:CreateTab("ESP", 4483345998)
+local HumanoidTab = Window:CreateTab("Humanoid", 4483349987)
+local NoclipTab = Window:CreateTab("Noclip", 4483362458)
+local HitboxTab = Window:CreateTab("Hitbox", 4483345998)
+local TeleportTab = Window:CreateTab("Teleport", 4483362458)
+local GoToTab = Window:CreateTab("Go-To Players", 4483345998)
+local AutoGiveTab = Window:CreateTab("Auto-Give", 4483362458)
+local ArrestTab = Window:CreateTab("Arrest", 4483362458)
+
+AimTab:CreateSection("Aim Assist")
+AimTab:CreateToggle({
+   Name = "Enable Aimlock",
+   CurrentValue = Flags["Aim/AimLock"],
+   Flag = "AimLockToggle",
+   Callback = function(Value)
+      Flags["Aim/AimLock"] = Value
+      if not Value then ClearAimLockState(true) end
+   end,
+})
+
+AimTab:CreateToggle({
+   Name = "Ignore Teammates",
+   CurrentValue = Flags["Aim/TeamCheck"],
+   Flag = "AimTeamCheck",
+   Callback = function(Value) Flags["Aim/TeamCheck"] = Value end,
+})
+
+AimTab:CreateToggle({
+   Name = "Visibility Check",
+   CurrentValue = Flags["Aim/VisibilityCheck"],
+   Flag = "AimVisCheck",
+   Callback = function(Value) Flags["Aim/VisibilityCheck"] = Value end,
+})
+
+AimTab:CreateSlider({
+   Name = "Attraction Strength",
+   Range = {0, 500},
+   Increment = 10,
+   CurrentValue = Flags["Aim/AttractionStrength"],
+   Flag = "AimStrength",
+   Callback = function(Value) Flags["Aim/AttractionStrength"] = Value end,
+})
+
+AimTab:CreateSlider({
+   Name = "FOV Radius",
+   Range = {0, 500},
+   Increment = 5,
+   CurrentValue = Flags["Aim/FOV/Radius"],
+   Flag = "AimFOV",
+   Callback = function(Value) Flags["Aim/FOV/Radius"] = Value end,
+})
+
+AimTab:CreateToggle({
+   Name = "Show FOV Circle",
+   CurrentValue = Flags["Aim/FOV/ShowCircle"],
+   Flag = "AimShowCircle",
+   Callback = function(Value) Flags["Aim/FOV/ShowCircle"] = Value end,
+})
+
+AimTab:CreateSection("Dampening")
+AimTab:CreateToggle({
+   Name = "Enable Dampening",
+   CurrentValue = Flags["Aim/Dampening"],
+   Flag = "AimDampening",
+   Callback = function(Value) Flags["Aim/Dampening"] = Value end,
+})
+
+AimTab:CreateSlider({
+   Name = "Dampening Threshold",
+   Range = {0, 500},
+   Increment = 5,
+   CurrentValue = Flags["Aim/Dampening/Threshold"],
+   Flag = "AimDampThreshold",
+   Callback = function(Value) Flags["Aim/Dampening/Threshold"] = Value end,
+})
+
+AimTab:CreateSlider({
+   Name = "Dampening Min Strength",
+   Range = {0, 100},
+   Increment = 1,
+   CurrentValue = Flags["Aim/Dampening/Strength"],
+   Flag = "AimDampStrength",
+   Callback = function(Value) Flags["Aim/Dampening/Strength"] = Value end,
+})
+
+ESPTab:CreateSection("ESP Options")
+ESPTab:CreateToggle({
+   Name = "Enable ESP",
+   CurrentValue = Flags["ESP/Enabled"],
+   Flag = "ESPEnabled",
+   Callback = function(Value) Flags["ESP/Enabled"] = Value end,
+})
+
+ESPTab:CreateToggle({
+   Name = "Show Username",
+   CurrentValue = Flags["ESP/ShowUsername"],
+   Flag = "ESPUsername",
+   Callback = function(Value) Flags["ESP/ShowUsername"] = Value end,
+})
+
+ESPTab:CreateToggle({
+   Name = "Color By Role",
+   CurrentValue = Flags["ESP/ColorByRole"],
+   Flag = "ESPRoleColor",
+   Callback = function(Value) Flags["ESP/ColorByRole"] = Value end,
+})
+
+ESPTab:CreateToggle({
+   Name = "Hide Teammates",
+   CurrentValue = Flags["ESP/TeamCheck"],
+   Flag = "ESPTeamCheck",
+   Callback = function(Value) Flags["ESP/TeamCheck"] = Value end,
+})
+
+ESPTab:CreateSlider({
+   Name = "Max Distance",
+   Range = {50, 10000},
+   Increment = 50,
+   CurrentValue = Flags["ESP/MaxDistance"],
+   Flag = "ESPMaxDist",
+   Callback = function(Value) Flags["ESP/MaxDistance"] = Value end,
+})
+
+ESPTab:CreateSection("Player Info & Visuals")
+ESPTab:CreateToggle({
+   Name = "Show Health",
+   CurrentValue = Flags["ESP/HealthIndicator"],
+   Flag = "ESPHealth",
+   Callback = function(Value) Flags["ESP/HealthIndicator"] = Value end,
+})
+
+ESPTab:CreateToggle({
+   Name = "Show Distance",
+   CurrentValue = Flags["ESP/ShowDistance"],
+   Flag = "ESPDist",
+   Callback = function(Value) Flags["ESP/ShowDistance"] = Value end,
+})
+
+ESPTab:CreateToggle({
+   Name = "Show Equipped Tool",
+   CurrentValue = Flags["ESP/ShowEquipped"],
+   Flag = "ESPEquipped",
+   Callback = function(Value) Flags["ESP/ShowEquipped"] = Value end,
+})
+
+ESPTab:CreateToggle({
+   Name = "Enable Box ESP",
+   CurrentValue = Flags["ESP/BoxEnabled"],
+   Flag = "ESPBox",
+   Callback = function(Value) Flags["ESP/BoxEnabled"] = Value end,
+})
+
+ESPTab:CreateToggle({
+   Name = "Enable Health Bar",
+   CurrentValue = Flags["ESP/HealthBarEnabled"],
+   Flag = "ESPHealthBar",
+   Callback = function(Value) Flags["ESP/HealthBarEnabled"] = Value end,
+})
+
+ESPTab:CreateToggle({
+   Name = "Vertical Health Bar",
+   CurrentValue = Flags["ESP/HealthBarVertical"],
+   Flag = "ESPHealthBarVert",
+   Callback = function(Value) Flags["ESP/HealthBarVertical"] = Value end,
+})
+
+ESPTab:CreateToggle({
+   Name = "Enable Highlight",
+   CurrentValue = Flags["ESP/HighlightEnabled"],
+   Flag = "ESPHighlight",
+   Callback = function(Value)
+      Flags["ESP/HighlightEnabled"] = Value
+      for _, data in pairs(ESP.Objects) do
+          if data.Highlight then SafeSet(data.Highlight, "Enabled", Value) end
+      end
+   end,
+})
+
+HumanoidTab:CreateSection("Movement & Stats")
+HumanoidTab:CreateSlider({
+   Name = "Walk Speed",
+   Range = {0, 500},
+   Increment = 1,
+   CurrentValue = 16,
+   Flag = "HumanoidWalkSpeed",
+   Callback = function(Value)
+      Flags["Humanoid/WalkSpeed"] = Value
+      local char = LocalPlayer.Character
+      local hum = char and char:FindFirstChildOfClass("Humanoid")
+      if hum then pcall(function() hum.WalkSpeed = Value end) end
+   end,
+})
+
+HumanoidTab:CreateSlider({
+   Name = "Jump Power",
+   Range = {0, 500},
+   Increment = 1,
+   CurrentValue = 50,
+   Flag = "HumanoidJumpPower",
+   Callback = function(Value)
+      Flags["Humanoid/JumpPower"] = Value
+      local char = LocalPlayer.Character
+      local hum = char and char:FindFirstChildOfClass("Humanoid")
+      if hum then pcall(function() hum.JumpPower = Value end) end
+   end,
+})
+
+HumanoidTab:CreateSlider({
+   Name = "Jump Height",
+   Range = {0, 500},
+   Increment = 0.5,
+   CurrentValue = 7.2,
+   Flag = "HumanoidJumpHeight",
+   Callback = function(Value)
+      Flags["Humanoid/JumpHeight"] = Value
+      local char = LocalPlayer.Character
+      local hum = char and char:FindFirstChildOfClass("Humanoid")
+      if hum then pcall(function() hum.JumpHeight = Value end) end
+   end,
+})
+
+HumanoidTab:CreateSlider({
+   Name = "Hip Height",
+   Range = {0, 100},
+   Increment = 0.5,
+   CurrentValue = 2,
+   Flag = "HumanoidHipHeight",
+   Callback = function(Value)
+      Flags["Humanoid/HipHeight"] = Value
+      local char = LocalPlayer.Character
+      local hum = char and char:FindFirstChildOfClass("Humanoid")
+      if hum then pcall(function() hum.HipHeight = Value end) end
+   end,
+})
+
+HumanoidTab:CreateSlider({
+   Name = "Max Health",
+   Range = {0, 2000},
+   Increment = 1,
+   CurrentValue = 100,
+   Flag = "HumanoidMaxHealth",
+   Callback = function(Value)
+      Flags["Humanoid/MaxHealth"] = Value
+      local char = LocalPlayer.Character
+      local hum = char and char:FindFirstChildOfClass("Humanoid")
+      if hum then pcall(function() hum.MaxHealth = Value end) end
+   end,
+})
+
+NoclipTab:CreateSection("Noclip Controls")
+NoclipTab:CreateToggle({
+   Name = "Enable Noclip",
+   CurrentValue = Flags["Noclip/Enabled"],
+   Flag = "NoclipToggle",
+   Callback = function(Value)
+      Flags["Noclip/Enabled"] = Value
+      if Value then
+          Rayfield:Notify({Title = "Noclip", Content = "Scanning walls...", Duration = 2})
+          task.spawn(function() ScanAndBreak() end)
+      else
+          RestoreAll()
+      end
+   end,
+})
+
+NoclipTab:CreateSlider({
+   Name = "Radius",
+   Range = {50, 2000},
+   Increment = 25,
+   CurrentValue = Flags["Noclip/Radius"],
+   Flag = "NoclipRadius",
+   Callback = function(Value) Flags["Noclip/Radius"] = Value end,
+})
+
+NoclipTab:CreateToggle({
+   Name = "Include Anchored (Walls)",
+   CurrentValue = Flags["Noclip/IncludeAnchored"],
+   Flag = "NoclipAnchored",
+   Callback = function(Value) Flags["Noclip/IncludeAnchored"] = Value end,
+})
+
+NoclipTab:CreateToggle({
+   Name = "Include Unanchored (Objects)",
+   CurrentValue = Flags["Noclip/IncludeUnanchored"],
+   Flag = "NoclipUnanchored",
+   Callback = function(Value) Flags["Noclip/IncludeUnanchored"] = Value end,
+})
+
+NoclipTab:CreateButton({
+   Name = "Force Rescan Now",
+   Callback = function()
+      if Flags["Noclip/Enabled"] then
+          task.spawn(function()
+              ScanAndBreak()
+              Rayfield:Notify({Title = "Noclip", Content = "Rescan done. Broken: " .. tostring(Noclip.BrokenCount), Duration = 2})
+          end)
+      else
+          Rayfield:Notify({Title = "Noclip", Content = "Enable Noclip first.", Duration = 2})
+      end
+   end,
+})
+
+NoclipTab:CreateButton({
+   Name = "Restore All Walls",
+   Callback = function()
+      RestoreAll()
+      Rayfield:Notify({Title = "Noclip", Content = "All walls restored.", Duration = 2})
+   end,
+})
+
+HitboxTab:CreateSection("Hitbox Expander")
+HitboxTab:CreateToggle({
+   Name = "Enable Hitbox Expander",
+   CurrentValue = Flags["Hitbox/Enabled"],
+   Flag = "HitboxToggle",
+   Callback = function(Value)
+      Flags["Hitbox/Enabled"] = Value
+      if Value then HitboxRefreshAll() else HitboxRestoreAll() end
+   end,
+})
+
+HitboxTab:CreateSlider({
+   Name = "Hitbox Size",
+   Range = {1, 200},
+   Increment = 1,
+   CurrentValue = Flags["Hitbox/Size"],
+   Flag = "HitboxSize",
+   Callback = function(Value)
+      Flags["Hitbox/Size"] = Value
+      if Flags["Hitbox/Enabled"] then HitboxRefreshAll() end
+   end,
+})
+
+HitboxTab:CreateSlider({
+   Name = "Transparency",
+   Range = {0, 1},
+   Increment = 0.05,
+   CurrentValue = Flags["Hitbox/Transparency"],
+   Flag = "HitboxTrans",
+   Callback = function(Value)
+      Flags["Hitbox/Transparency"] = Value
+      if Flags["Hitbox/Enabled"] then HitboxRefreshAll() end
+   end,
+})
+
+HitboxTab:CreateToggle({
+   Name = "Expand All Body Parts",
+   CurrentValue = Flags["Hitbox/AllParts"],
+   Flag = "HitboxAllParts",
+   Callback = function(Value)
+      Flags["Hitbox/AllParts"] = Value
+      if Flags["Hitbox/Enabled"] then HitboxRefreshAll() end
+   end,
+})
+
+HitboxTab:CreateToggle({
+   Name = "Include Local Character",
+   CurrentValue = Flags["Hitbox/IncludeSelf"],
+   Flag = "HitboxSelf",
+   Callback = function(Value)
+      Flags["Hitbox/IncludeSelf"] = Value
+      if Flags["Hitbox/Enabled"] then HitboxRefreshAll() end
+   end,
+})
+
+HitboxTab:CreateToggle({
+   Name = "Show Visualizer Highlight",
+   CurrentValue = Flags["Hitbox/Visualizer"],
+   Flag = "HitboxViz",
+   Callback = function(Value)
+      Flags["Hitbox/Visualizer"] = Value
+      if Flags["Hitbox/Enabled"] then HitboxRefreshAll() end
+   end,
+})
+
+TeleportTab:CreateSection("Preset Locations")
+for _, loc in ipairs(TELEPORT_PRESETS) do
+   TeleportTab:CreateButton({
+      Name = loc.name,
+      Callback = function()
+         TeleportToPosition(loc.pos)
+      end,
+   })
+end
+
+TeleportTab:CreateSection("Save Current Location")
+local savedLocationInputName = ""
+TeleportTab:CreateInput({
+   Name = "Location Name",
+   PlaceholderText = "Enter location name...",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text)
+      savedLocationInputName = Text
+   end,
+})
+
+TeleportTab:CreateButton({
+   Name = "Save Current Location",
+   Callback = function()
+      local name = savedLocationInputName
+      name = tostring(name or ""):gsub("^%s+", ""):gsub("%s+$", "")
+      if name == "" then
+          Rayfield:Notify({Title = "Teleport", Content = "Please enter a location name.", Duration = 2})
+          return
+      end
+      local pos = GetCurrentPosition()
+      if not pos then
+          Rayfield:Notify({Title = "Teleport", Content = "Could not read current position.", Duration = 2})
+          return
+      end
+      SavedLocations[name] = { X = pos.X, Y = pos.Y, Z = pos.Z }
+      SaveLocationsToDisk()
+      Rayfield:Notify({Title = "Teleport", Content = string.format("Saved '%s'", name), Duration = 2})
+   end,
+})
+
+GoToTab:CreateSection("Players List & Teleport")
+GoToTab:CreateButton({
+   Name = "Refresh Players List",
+   Callback = function()
+      Rayfield:Notify({Title = "Go-To", Content = "Players list active.", Duration = 2})
+   end,
+})
+
+AutoGiveTab:CreateSection("Auto-Give Guns")
+AutoGiveTab:CreateToggle({
+   Name = "Enable Auto-Give (MP5 + Remington)",
+   CurrentValue = Flags["AutoGive/Enabled"],
+   Flag = "AutoGiveToggle",
+   Callback = function(Value)
+      Flags["AutoGive/Enabled"] = Value
+      if Value then task.spawn(function() SpawnTouchGiversInFront() end) end
+   end,
+})
+
+AutoGiveTab:CreateButton({
+   Name = "Visit TouchGivers Now",
+   Callback = function()
+      task.spawn(function() SpawnTouchGiversInFront(true) end)
+      Rayfield:Notify({Title = "Auto-Give", Content = "Visited TouchGivers.", Duration = 2})
+   end,
+})
+
+ArrestTab:CreateSection("Arrest System")
+ArrestTab:CreateToggle({
+   Name = "Enable Arrest Stick",
+   CurrentValue = Flags["Arrest/Enabled"],
+   Flag = "ArrestToggle",
+   Callback = function(Value) Flags["Arrest/Enabled"] = Value end,
+})
+
+ArrestTab:CreateSlider({
+   Name = "Stick Distance (Behind)",
+   Range = {0.5, 20},
+   Increment = 0.5,
+   CurrentValue = Flags["Arrest/StickDistance"],
+   Flag = "ArrestDist",
+   Callback = function(Value) Flags["Arrest/StickDistance"] = Value end,
+})
+
+ArrestTab:CreateSlider({
+   Name = "Stick Duration",
+   Range = {0.5, 60},
+   Increment = 0.5,
+   CurrentValue = Flags["Arrest/StickDuration"],
+   Flag = "ArrestDur",
+   Callback = function(Value) Flags["Arrest/StickDuration"] = Value end,
+})
+
+ArrestTab:CreateButton({
+   Name = "Stop Sticking",
+   Callback = function()
+      StopArrestStick()
+   end,
+})
+
+RunService.Heartbeat:Connect(function()
+    if Flags["ESP/Enabled"] then
+        RefreshESP()
+    end
+
+    if Flags["Noclip/Enabled"] then
+        ScanAndBreak()
+        EnforceNoclip()
+    end
+
+    ApplyHumanoidSettings()
+end)
+
+RunService.RenderStepped:Connect(function()
+    UpdateAim()
+    UpdateESP2D()
+end)
+
+Players.PlayerAdded:Connect(function(player) UpdatePlayerCache() end)
+Players.PlayerRemoving:Connect(function(player)
+    UpdatePlayerCache()
+    RemoveNametag(player)
+    RemoveESP2D(player)
+    if player.Character then HitboxRestoreCharacter(player.Character) end
+    CharCache[player] = nil
+end)
+
+UpdatePlayerCache()
+
+if LocalPlayer.Character then
+    task.spawn(function()
+        task.wait(1)
+        CaptureHumanoidSettings()
+    end)
+end
+
+Rayfield:Notify({
+   Title = "YH Script | Prison Life",
+   Content = "Loaded successfully with all features!",
+   Duration = 5,
+   Image = 4483362458,
+})
+
